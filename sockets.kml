@@ -1,0 +1,1200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Рабочие розетки</name>
+    <Style id="icon-1561-0288D1-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-1.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1561-0288D1-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-1.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1561-0288D1">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1561-0288D1-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1561-0288D1-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1561-0288D1-nodesc-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-1.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1561-0288D1-nodesc-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-1.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1561-0288D1-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1561-0288D1-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1561-0288D1-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1561-E65100-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-4.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1561-E65100-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-4.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1561-E65100">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1561-E65100-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1561-E65100-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1561-E65100-nodesc-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-4.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1561-E65100-nodesc-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-4.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1561-E65100-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1561-E65100-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1561-E65100-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1561-FF5252-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-3.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1561-FF5252-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-3.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1561-FF5252">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1561-FF5252-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1561-FF5252-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1899-0288D1-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-2.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1899-0288D1-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-2.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1899-0288D1">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-0288D1-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-0288D1-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1899-0288D1-nodesc-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-2.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1899-0288D1-nodesc-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-2.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1899-0288D1-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-0288D1-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-0288D1-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>Суши Wok</name>
+      <description>Розетки под столиками у стен, много, на всех хватит, заряжался без проблем всегда</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.5477907,55.7391601,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>KFC</name>
+      <description>Розетки  у касс на стене</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.607616,55.7653128,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Subway</name>
+      <description>Розетки (две или три) на стене под приоконным столиком слева от входной двери</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.5850921,55.7786219,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Новейшие розетки ВДНХ</name>
+      <description>Розетка висит на проводе на стене дома скульптора, можно пользоваться.</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.6203062,55.8400599,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетки справа от касс на стене</name>
+      <description>Можно пользоваться, проверено компанией моноколесников</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          38.7632176,55.0965244,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетки в irish Pub</name>
+      <description>Розеток много, можно пользоваться</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          35.9051268,56.8487351,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Бургер кинг, ВДНХ</name>
+      <description>второй этаж, в колоннах поддержки</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.6347291,55.8236997,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Макдоналдс</name>
+      <description><![CDATA[<img src="https://lh5.googleusercontent.com/inBxjv8f7sMfG7Vybt34nx1JQUXNaFr_I8H3eMLxWXZNt4EFyFhM5dzTX36n5scyUasKmSsiSiNREfkfdC4aaK8DTNer36lSCZd4RnCOGeR5M4RKOGBUxw1ckL6YavsO" height="200" width="auto" /><br><br>Для особо наглых. Розетка под потолком =) Есть и за жёсткими диванчиками 15см от пола.<br><br><img src="https://lh4.googleusercontent.com/yb81iV_e5gjkD7T71QYMnLND1fURjB8NNL25cC_htkCxCFo6S6siG4An1KEms7EJtl8rkdKHq3hS7KTxpB1kxNq3jLTfvrB0F-62n5nbqPzldWs-ylJVMoxVYOnpQKUA" height="200" width="auto" />]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh5.googleusercontent.com/inBxjv8f7sMfG7Vybt34nx1JQUXNaFr_I8H3eMLxWXZNt4EFyFhM5dzTX36n5scyUasKmSsiSiNREfkfdC4aaK8DTNer36lSCZd4RnCOGeR5M4RKOGBUxw1ckL6YavsO https://lh4.googleusercontent.com/yb81iV_e5gjkD7T71QYMnLND1fURjB8NNL25cC_htkCxCFo6S6siG4An1KEms7EJtl8rkdKHq3hS7KTxpB1kxNq3jLTfvrB0F-62n5nbqPzldWs-ylJVMoxVYOnpQKUA</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.6377332,55.8285495,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>В CofeeBean розетки у каждого стола</name>
+      <description>Причем даже не по одной, а по целому пилоту. Отличное место для зарядки.</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.6057318,55.7567013,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Пекинская утка</name>
+      <description>Тройник у столика рядом с окном справа от входа.</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.3811827,55.7668684,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетки на МЦК Ботанический Сад</name>
+      <description>Розетки прямо в подземном переходе, стоит стойка для зарядки гаджетов</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.6399997,55.8456033,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетки в Сокольниках</name>
+      <description><![CDATA[<img src="https://lh4.googleusercontent.com/VbGHqUID3hipDCrmQbwnglCxMmbccXk_gfbgZ5TK-n0fWMWHjllw2S2mUbqeLBKUYO-DLuoVaz93ZtE-scmtCbXrRjhH0tcMNJWIgIU1vWHTn9Cx6KLJxLcIffoYBy1F" height="200" width="auto" /><br><br>Розетки на столбиках возле скамеек]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh4.googleusercontent.com/VbGHqUID3hipDCrmQbwnglCxMmbccXk_gfbgZ5TK-n0fWMWHjllw2S2mUbqeLBKUYO-DLuoVaz93ZtE-scmtCbXrRjhH0tcMNJWIgIU1vWHTn9Cx6KLJxLcIffoYBy1F</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.674513,55.7957455,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Фудкорнер Первомайская</name>
+      <description>Розетки под стойкой</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.8016054,55.7935222,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Сушивок первомайская</name>
+      <description>Множество розеток у пола</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.8087026,55.7936278,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>БургерКинг Семеновская</name>
+      <description><![CDATA[<img src="https://lh4.googleusercontent.com/cnvLKDE7ytxPrBFtS9s_bgo8vj9sSwtt5-pAGbPIJ5qzPDjIrCYeVsTY04kqq9OzXylVLN-whrX08-5Ta84JXkizNF3b5ZzWiOtsVjZbjg8r8nsTScaUDHiI0a2DFG6m" height="200" width="auto" /><br><br>Розетки под столом в углу у окна]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh4.googleusercontent.com/cnvLKDE7ytxPrBFtS9s_bgo8vj9sSwtt5-pAGbPIJ5qzPDjIrCYeVsTY04kqq9OzXylVLN-whrX08-5Ta84JXkizNF3b5ZzWiOtsVjZbjg8r8nsTScaUDHiI0a2DFG6m</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.7190551,55.7833948,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>БургерКинг Сокольники</name>
+      <description><![CDATA[<img src="https://lh4.googleusercontent.com/1Zwg_Wy3UqWEEx690EHOx366-KP-IF3J4T1_jnMpXt4tuECp1fL-tlzoH2lD7o5hIrNka7Oqa7fIL44Fw4yocl0kAbo7ch4rF0VvKtZeWaX6PUBbRinYL708uirZbhs" height="200" width="auto" /><br><br>Куча розеток]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh4.googleusercontent.com/1Zwg_Wy3UqWEEx690EHOx366-KP-IF3J4T1_jnMpXt4tuECp1fL-tlzoH2lD7o5hIrNka7Oqa7fIL44Fw4yocl0kAbo7ch4rF0VvKtZeWaX6PUBbRinYL708uirZbhs</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.6800531,55.7900962,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Кофебин Сретенка</name>
+      <description>Пилоты у столиков у окна</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.6323849,55.7695049,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Точка 18</name>
+      <styleUrl>#icon-1561-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          37.6583862,55.7178288,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>vip wok buffet</name>
+      <description>Розетка у первого от входа столика. Зарядиться разрешают</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.4072457,55.7164577,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name><![CDATA[Кафе "Про Бариста", скидка на кофе моноколесникам 50%]]></name>
+      <description><![CDATA[Кафе "Про Бариста". Розетки и скидка на кофе моноколесникам 50%. На территории Винзавода. Проверено 05.2017]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.6661217,55.7545845,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Point 21</name>
+      <description>Хинкальная, розетки у каждого столика. Проверено 05.2017</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.6565422,55.6489457,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Point 22</name>
+      <description>Ресторан КИМЧИ. Розетки у всех столиков с грилем. Проверено 06.2017</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.6307702,55.7278064,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Суши Wok</name>
+      <description>Розетки в зале. Относятся к элтранспорту радушно. Июль 2017.</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.6621467,55.8852376,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Суши Wok</name>
+      <description>Маленький зал, есть розетки. Июль 2017.</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.831555,55.7345468,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Суши Wok</name>
+      <description>Розетки в зале. Относятся адекватно. Оставил в книге жалоб положительный отзыв. :) Июль 2017.</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.7482483,55.6102401,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Ресторанный дворик на втором этаже ТЦ</name>
+      <description>В двух колоннах посреди зала есть розетки. Спокойно зарядился. Июль 2017.</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.5088531,55.6196181,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Пельменная на набережной </name>
+      <description><![CDATA[<img src="https://lh4.googleusercontent.com/4E3os-PkjNv7arqZs62Q1ay6zR0S-FTWojhstieKgOV2WZZA4BNH4ts4B7eF8U_TKYQ4jm7l6LZydwotLkZqb122ym4g6hRTjTvtBbbqPFa7iE0dGanfehPfCWPtbApk" height="200" width="auto" /><br><br>Столики у окна у каждого столика]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh4.googleusercontent.com/4E3os-PkjNv7arqZs62Q1ay6zR0S-FTWojhstieKgOV2WZZA4BNH4ts4B7eF8U_TKYQ4jm7l6LZydwotLkZqb122ym4g6hRTjTvtBbbqPFa7iE0dGanfehPfCWPtbApk</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.5982645,55.7301837,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Хлеб и Мясо, шаурма, розетки</name>
+      <description><![CDATA[<img src="https://lh5.googleusercontent.com/NXKl0LpeJh1OOo3582hbme9KIx-MM9bkMttwIefHr7v0FALQ1I78I4fPd2iDBAFbxCBB87Lg6pqByiQmm_EVAHrMd_fBrdvkQHoq9jpccp4hR2DnpIaPNCZ-3rndukSljQ" height="200" width="auto" /><br><br>Рлзетка под стойкой слева от входа]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh5.googleusercontent.com/NXKl0LpeJh1OOo3582hbme9KIx-MM9bkMttwIefHr7v0FALQ1I78I4fPd2iDBAFbxCBB87Lg6pqByiQmm_EVAHrMd_fBrdvkQHoq9jpccp4hR2DnpIaPNCZ-3rndukSljQ</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.748487,55.7881025,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Точка 29</name>
+      <description>Кафе нам. Куча розеток </description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.5643721,55.7340606,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Бургер кинг лермонтовский розетка</name>
+      <description><![CDATA[<img src="https://lh3.googleusercontent.com/BgIorAVBd7Hnn5W8HSVgpXSFUgj9kFkDUW4C5AK_OJ3FTph8V-rJVc2qsMFq3wns3Q8VQsEzCuuVwKDGt_PTQk_xtcbAc0O8ru7FdA1Y5VcuMEmsBEHPzDytj777p_B0" height="200" width="auto" /><br><br>]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh3.googleusercontent.com/BgIorAVBd7Hnn5W8HSVgpXSFUgj9kFkDUW4C5AK_OJ3FTph8V-rJVc2qsMFq3wns3Q8VQsEzCuuVwKDGt_PTQk_xtcbAc0O8ru7FdA1Y5VcuMEmsBEHPzDytj777p_B0</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.8545523,55.7004446,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Натурена - розетка,пирожные, донер</name>
+      <styleUrl>#icon-1561-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          37.7903455,55.7931731,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Точка 32</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          38.9794922,54.2202849,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Внутри KFC (2шт)</name>
+      <description>Инфа на сентябрь 2017</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.7065292,55.8666834,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>В веломастерской (3шт)</name>
+      <description>Инфа на сентябрь 2017</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.7068377,55.8668113,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетка в беседке</name>
+      <description><![CDATA[<img src="https://lh4.googleusercontent.com/SbwyiJ_ffj8JhhaNLetGWvuNdOC2EHS01OV4V52DIwwQISruWnQZjt7AZJ7jiLqmh9PIWxvXGtvu8xZSGU9TLw0C1g91739TZOpc0b9kq1lXZnj4gYnGH5hJqJWt1szc" height="200" width="auto" /><br><br>]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh4.googleusercontent.com/SbwyiJ_ffj8JhhaNLetGWvuNdOC2EHS01OV4V52DIwwQISruWnQZjt7AZJ7jiLqmh9PIWxvXGtvu8xZSGU9TLw0C1g91739TZOpc0b9kq1lXZnj4gYnGH5hJqJWt1szc</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.6143564,55.8383188,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетка пончиковая у техники</name>
+      <description><![CDATA[<img src="https://lh3.googleusercontent.com/DOiIl1uSzKv-5zysj06M7ZXdy01qiV_-4RbMzprjPd6EPNGfH0ETWJq6De8dslGRq5tWKkPDEDJFKuXlvUcCyh_wTE9NWOZ8V7s97ZLiATOANhybqMEsvMrXwcSOlDHM" height="200" width="auto" /><br><br>]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh3.googleusercontent.com/DOiIl1uSzKv-5zysj06M7ZXdy01qiV_-4RbMzprjPd6EPNGfH0ETWJq6De8dslGRq5tWKkPDEDJFKuXlvUcCyh_wTE9NWOZ8V7s97ZLiATOANhybqMEsvMrXwcSOlDHM</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.6432827,55.8290903,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>55°Розетки ФАНТАЗЕРы</name>
+      <description><![CDATA[<img src="https://lh5.googleusercontent.com/B58wKL2lpFdXnak4whRs8JWeoX7Co0O9Kf4CHsAJCC87rs5AjMX5QsB01kbckxZclactAY_9vyXT_EeGkexgTvjwd-D8zRtGQcjWhljrZwBDUKxsAuFPaBl-cRKwTew" height="200" width="auto" /><br><br>]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh5.googleusercontent.com/B58wKL2lpFdXnak4whRs8JWeoX7Co0O9Kf4CHsAJCC87rs5AjMX5QsB01kbckxZclactAY_9vyXT_EeGkexgTvjwd-D8zRtGQcjWhljrZwBDUKxsAuFPaBl-cRKwTew</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.6400833333333,55.8285277777778,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Лента ВДНХ</name>
+      <description>Справа и слева от входа, внутри, сразу после стеклянных дверей.</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.634359,55.824997,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name><![CDATA[Кафе "Мокко"]]></name>
+      <description>Инфа.ноябрь 2016. У входа и под столиками вдоль окон. Много розеток. Персонал дружественный. Пицца неплохая.</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.590926,55.7144626,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Пуэропорт</name>
+      <description><![CDATA[<img src="https://lh3.googleusercontent.com/s7inlxt6eoJVtokwvXB3dGedOkpgYIMR3rzIodVcNuGpbcOX0bU-5biMH8tz3iLenEXnFZ5aNSoUj58WskXQxQPwFwIJrG8HD9JXBOkXXLMLNR5gZrmlnfyUpgSUCfpg4g" height="200" width="auto" /><br><br>На веранде, на столбе 2 розетки. Ориентир - огромный самовар. За ним.]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh3.googleusercontent.com/s7inlxt6eoJVtokwvXB3dGedOkpgYIMR3rzIodVcNuGpbcOX0bU-5biMH8tz3iLenEXnFZ5aNSoUj58WskXQxQPwFwIJrG8HD9JXBOkXXLMLNR5gZrmlnfyUpgSUCfpg4g</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.5975537,55.7294361,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Полно розеток</name>
+      <styleUrl>#icon-1561-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          37.6402277,55.7045466,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Магазин Дмитрогорский</name>
+      <styleUrl>#icon-1561-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          37.2393823,56.0029225,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name><![CDATA[Кафе "БУФЕТ"]]></name>
+      <description><![CDATA[<img src="https://lh3.googleusercontent.com/1213F0tS4ccVL5yUc_OJcVHRVwjGbPKZQvoBQYOHqLexoUs55110YIIEjo_K7qOcmjybx-_MVB2PwDUBFNBgadOTgALWL82VNUIOtbDyL3Rd-ZAMPpAG3Yia-W0096e8" height="200" width="auto" /><br><br>Кафе-столовая "Буфет" свободный доступ к розеткам в 2-х залах]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh3.googleusercontent.com/1213F0tS4ccVL5yUc_OJcVHRVwjGbPKZQvoBQYOHqLexoUs55110YIIEjo_K7qOcmjybx-_MVB2PwDUBFNBgadOTgALWL82VNUIOtbDyL3Rd-ZAMPpAG3Yia-W0096e8</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.560727,55.8000779,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетка в кухне уличного ресторана
+</name>
+      <description>Неработающий уличный ресторан с работающей розеткой. Розетка в помещении кухни: зайти в здание ресторана со стороны служебного входа, прямо на кухню, где они готовят, к мангалам. Дверь была открыта, хотя в соседнем таком же была на замке. Там есть свет и розетка (08 окт 2017г). В любой момент могут обесточить.</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.6723377,55.6699886,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розеток нет!</name>
+      <description>В этом макдаке розеток нет.</description>
+      <styleUrl>#icon-1561-FF5252</styleUrl>
+      <Point>
+        <coordinates>
+          37.7180922,55.6122367,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетки фудкорт Водолей</name>
+      <description>На фудкорте на колоннах напротив Макдональдса есть пара розеток.</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.719833,55.6128502,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетка в фитнесе СССР на Ткацкой</name>
+      <description><![CDATA[Есть розетки прямо в "тамбуре", в подъезде]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.7238858,55.786424,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетка в шоуруме ЭкоДрифта</name>
+      <description>Приютят батареечника, не дадут просохнуть в пути</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.4490841,55.7276195,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Кафе Фекла</name>
+      <description>Кафе на втором этаже автосалона. Розетка к лестницы.</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.4486268,55.7279076,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Дикси опалиха розетка</name>
+      <description><![CDATA[<img src="https://lh6.googleusercontent.com/ylGQYSiI62ZbQ_N7v9sibA0wVBHobuYzAfB3vZdu7Ko9Mlix8dMAcXURZQjCCWMdNbTZt1Ddrn_AsCNs0veXIHxwZh41DN45Gq0jqCjmIaGSCN-FR7NfPJQJFx9fNlOwnQ" height="200" width="auto" /><br><br>В Дикси у контрольных весов рядом с ячейками хранения. Заряжал там колесо.]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh6.googleusercontent.com/ylGQYSiI62ZbQ_N7v9sibA0wVBHobuYzAfB3vZdu7Ko9Mlix8dMAcXURZQjCCWMdNbTZt1Ddrn_AsCNs0veXIHxwZh41DN45Gq0jqCjmIaGSCN-FR7NfPJQJFx9fNlOwnQ</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.2523025,55.8401434,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Точка 51</name>
+      <styleUrl>#icon-1561-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          37.2436523,56.0413632,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Вьтнамцы</name>
+      <description>2й этаж пару розеток есть</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.6802704,55.7166776,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Crafted розетка на веранде</name>
+      <description><![CDATA[<img src="https://lh3.googleusercontent.com/Zjj1GNvmUcRRf2spG4LooEQlS1mhCZFEA50JEh6GCzXjlaYAay-NPnpeDuMV7ySi8QYxINvpDraBng0wThKilGGGA-rZ8JKoyX-22z_uYtD-aFASdy3GwmHXCFsGDZpBPQ" height="200" width="auto" /><br><br>Работающая розетка на в веранде кафе]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh3.googleusercontent.com/Zjj1GNvmUcRRf2spG4LooEQlS1mhCZFEA50JEh6GCzXjlaYAay-NPnpeDuMV7ySi8QYxINvpDraBng0wThKilGGGA-rZ8JKoyX-22z_uYtD-aFASdy3GwmHXCFsGDZpBPQ</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.6783258,55.7955065,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Станция подзарядки м.Маяковская</name>
+      <description><![CDATA[<img src="https://lh4.googleusercontent.com/SGO58_KCGetpjidEVNzIYtzjdDD-YJH5KBElQee3rdF-OlPS9Hr4TvSoXV_SYLCJVnyekf5WPFghDu4ImcvwANw75TctWUHb01Ffo4DhYWjbdZeV5JaajqRa92N8w9A" height="200" width="auto" /><br><br>Станция подзарядки гаджетов, новый выход метро Маяковская]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh4.googleusercontent.com/SGO58_KCGetpjidEVNzIYtzjdDD-YJH5KBElQee3rdF-OlPS9Hr4TvSoXV_SYLCJVnyekf5WPFghDu4ImcvwANw75TctWUHb01Ffo4DhYWjbdZeV5JaajqRa92N8w9A</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.5960356,55.77038,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>В этом макдаке розеток нет</name>
+      <styleUrl>#icon-1561-E65100-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          38.8047194,55.0843044,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Кафе на 2 этаже, девочки дают зарядиться от розетки за стойкой</name>
+      <styleUrl>#icon-1561-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          38.8049206,55.0841401,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name><![CDATA[Кафе в "Город Хобби" на Черкизовской]]></name>
+      <description><![CDATA[<img src="https://lh6.googleusercontent.com/zjQLRxSohSRs851j89IXlQc0XXs5bzkxt1Ape48CBulOJYaDd5WQ-jktYcVBr16tF2uGwk69qTSlp6cp1V7bCzZ2JAsTWzJ8-Xp1WxN3LFsbAnWoN3rmEIQ_HBKO73w" height="200" width="auto" /><br><br>Восточная кухня, розетку, можно заряжаться. Налево от входа.]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh6.googleusercontent.com/zjQLRxSohSRs851j89IXlQc0XXs5bzkxt1Ape48CBulOJYaDd5WQ-jktYcVBr16tF2uGwk69qTSlp6cp1V7bCzZ2JAsTWzJ8-Xp1WxN3LFsbAnWoN3rmEIQ_HBKO73w</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.7537978,55.8038076,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Му-Му на Семеновской</name>
+      <description><![CDATA[<img src="https://lh6.googleusercontent.com/agb0zMStPmtoT653UXfyxlY8I9-qGce1LYioJAd1imZff3GGDWDp36YgJguHxi0tJRvL0-Q4UzH-eZbelWbyRhl2jczStjCqeSWZd8ZTscuV3c51OuAoBkoI4Y_FPlfNzw" height="200" width="auto" /><br><br>Розетка и usb в углу зала в нише. ]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh6.googleusercontent.com/agb0zMStPmtoT653UXfyxlY8I9-qGce1LYioJAd1imZff3GGDWDp36YgJguHxi0tJRvL0-Q4UzH-eZbelWbyRhl2jczStjCqeSWZd8ZTscuV3c51OuAoBkoI4Y_FPlfNzw</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.7204123,55.7831632,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Кофедей розетка</name>
+      <description><![CDATA[<img src="https://lh4.googleusercontent.com/htPNjpMGXG2pqll3x9qP4mGnpYQKrnsBlpFk0rPqTVQ0hTox4Xm0v08SYSN-4LSn-mq4B-T6APomESH3XatLTVJeEEdLmEGsWMTILNJpzyVu3PBmXTTnDYzOTX3qxIQ" height="200" width="auto" /><br><br>Соседняя дверь от кофебина. Две розетки над столиком. Не возражают против зарядки. Кофе вкусный. ]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh4.googleusercontent.com/htPNjpMGXG2pqll3x9qP4mGnpYQKrnsBlpFk0rPqTVQ0hTox4Xm0v08SYSN-4LSn-mq4B-T6APomESH3XatLTVJeEEdLmEGsWMTILNJpzyVu3PBmXTTnDYzOTX3qxIQ</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.6057814,55.7566364,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Лаваш и угли</name>
+      <description><![CDATA[<img src="https://lh5.googleusercontent.com/XQdmBChxhtf1osnNdnVyXDidzReo19h2eHuR9B35uCpldiWgZ-sbiyoxkmhGesQzxUml4VFd-THzx-dVhnStMDiUzDfyPQtcE6yKaJ5SoffEfpXkJShAl9Hzav4FCN5O" height="200" width="auto" /><br><br>Вкусный плов и розетки 24 часа<br><br><img src="https://lh5.googleusercontent.com/Ft2vW5VdIUigRC7vEX9Jt62oJxnhAdcKSRi5cYZKig4bfKb6HvffMC-X_CBfA5cP9kXymxipgsoakn8Fh0IsD6Wn8SKnGOJIItM3TpGRyjI-dttZVVtdXmMz18ptErAy" height="200" width="auto" />]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh5.googleusercontent.com/XQdmBChxhtf1osnNdnVyXDidzReo19h2eHuR9B35uCpldiWgZ-sbiyoxkmhGesQzxUml4VFd-THzx-dVhnStMDiUzDfyPQtcE6yKaJ5SoffEfpXkJShAl9Hzav4FCN5O https://lh5.googleusercontent.com/Ft2vW5VdIUigRC7vEX9Jt62oJxnhAdcKSRi5cYZKig4bfKb6HvffMC-X_CBfA5cP9kXymxipgsoakn8Fh0IsD6Wn8SKnGOJIItM3TpGRyjI-dttZVVtdXmMz18ptErAy</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.6615405,55.7545573,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Бургер Кинг</name>
+      <description><![CDATA[<img src="https://lh5.googleusercontent.com/fKEykEHVUIFdS8TsOYl1xzgunQdzrwV1syqgO_OP7R3HnurSi-lt9Uvbmg4FjBUE8iz_2x1AHN_4E_hlI5LChOWtKr6kkFd5L0niHE-DAKgCt7TAKk_w-YfSGT7qACW1" height="200" width="auto" /><br><br>Розетки возле терминалов самообслуживания ]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh5.googleusercontent.com/fKEykEHVUIFdS8TsOYl1xzgunQdzrwV1syqgO_OP7R3HnurSi-lt9Uvbmg4FjBUE8iz_2x1AHN_4E_hlI5LChOWtKr6kkFd5L0niHE-DAKgCt7TAKk_w-YfSGT7qACW1</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.5844512,55.7600926,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Фудкорт Mari</name>
+      <description>Розетки в колонне у входа в фудкорт на третьем этаже. </description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.7702719,55.6499135,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name><![CDATA[Розетки KFC в ТЦ "Шангал"]]></name>
+      <description>На стене сразу слева от входа</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.8209656,55.7507474,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name><![CDATA[Розетки в БК в ТЦ "Шангал"]]></name>
+      <styleUrl>#icon-1561-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          37.8196245,55.7509558,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Бургер кингг на лениской слободе</name>
+      <description><![CDATA[<img src="https://lh5.googleusercontent.com/-5vCBuNT-SL0-QDiW-RO3-_w0cd7aHxjWX821J7ts44sIStAMAsUj3gywUmiBLyuLk0iFvSTdDXRjDRem4prDiOUBoZZdQCCH4bCy2N0N-_jAJjMnI2cj5FRMDSvvpA" height="200" width="auto" /><br><br>В углу справа от входа]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh5.googleusercontent.com/-5vCBuNT-SL0-QDiW-RO3-_w0cd7aHxjWX821J7ts44sIStAMAsUj3gywUmiBLyuLk0iFvSTdDXRjDRem4prDiOUBoZZdQCCH4bCy2N0N-_jAJjMnI2cj5FRMDSvvpA</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.6570545,55.710033,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетка в макдаке на Киевской не работает</name>
+      <description>На тором этаже в углу справа от лестницы</description>
+      <styleUrl>#icon-1561-E65100</styleUrl>
+      <Point>
+        <coordinates>
+          37.5663087,55.7458593,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>розетка в Тушинском парке</name>
+      <description><![CDATA[<img src="https://lh6.googleusercontent.com/SPa2nOB6gIKf0gANnJH4r7rNcT0_Za0jqfgN2WyLNHCF8UTdMaJiFPfkfW2pLZBt_zZeg5Whd84pIzIX7mN8mG9szkMkdhnD9lZljaXdkAgFI9LlaY8LxHxXrTTOGZoo" height="200" width="auto" /><br><br>]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh6.googleusercontent.com/SPa2nOB6gIKf0gANnJH4r7rNcT0_Za0jqfgN2WyLNHCF8UTdMaJiFPfkfW2pLZBt_zZeg5Whd84pIzIX7mN8mG9szkMkdhnD9lZljaXdkAgFI9LlaY8LxHxXrTTOGZoo</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.4531818,55.8596015,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>КФС на Маяковке</name>
+      <description>Розеточный рай. Розетки едва ли не под каждым столиком</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.5966525,55.7700194,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Сковородка</name>
+      <description>Есть розетки, заряжаться дают. </description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          56.2086413,58.006281,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетки в ТЦ Тройка</name>
+      <description>На верхнем этаже в ресторанной зоне у окна большое количество розеток</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.66433,55.7862626,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Papa Johns </name>
+      <description><![CDATA[<img src="https://lh5.googleusercontent.com/dham_f6e6uZUGFrrNI77GfeHgEcqJXhvF9dyG1yr7pplHtNTblqWmxyvVUdR05Ld3uSiLOvDJNmLYKz_0aFn7m7vNJbK2jLzF_vZTgKpktoAAiz9nca0r8b8-czoNmlx" height="200" width="auto" /><br><br>Одна розетка]]></description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh5.googleusercontent.com/dham_f6e6uZUGFrrNI77GfeHgEcqJXhvF9dyG1yr7pplHtNTblqWmxyvVUdR05Ld3uSiLOvDJNmLYKz_0aFn7m7vNJbK2jLzF_vZTgKpktoAAiz9nca0r8b8-czoNmlx</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.5908402,55.6050767,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Семейная кондитерская</name>
+      <description><![CDATA[<img src="https://lh6.googleusercontent.com/QmSqjLwB8wmts_tZbosuV2lhLB0uQwbu2jhYWT2iJeT5E12V0a7IsDVG29TmIwpzzZI1LLo21yyvV2V_T3cW272vCfKjWCnuBVLLUuLxfBwBVt5TMkFFjS9UEntaM0J_" height="200" width="auto" /><br><br>Кофейня, столики, туалет, две розетки]]></description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh6.googleusercontent.com/QmSqjLwB8wmts_tZbosuV2lhLB0uQwbu2jhYWT2iJeT5E12V0a7IsDVG29TmIwpzzZI1LLo21yyvV2V_T3cW272vCfKjWCnuBVLLUuLxfBwBVt5TMkFFjS9UEntaM0J_</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.5897633,55.6072244,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>БК на Мясницкой</name>
+      <description><![CDATA[<img src="https://lh3.googleusercontent.com/BVpn6G5rlkL25lUQFF9WgBGCGFqn1hLnLH8icTpVSjysTMhbyZOg8ViJD1zhbyqTduXT9E4agN5lG4-tbk7xcrCqDWxPChvhu-irJo6EV0W00-vgoQ3NslXWgzNhjCiBsQ" height="200" width="auto" /><br><br>Розетка в углу под столиком, торой этаж]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh3.googleusercontent.com/BVpn6G5rlkL25lUQFF9WgBGCGFqn1hLnLH8icTpVSjysTMhbyZOg8ViJD1zhbyqTduXT9E4agN5lG4-tbk7xcrCqDWxPChvhu-irJo6EV0W00-vgoQ3NslXWgzNhjCiBsQ</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.632578,55.7616055,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>БК на краснопрудной</name>
+      <description><![CDATA[<img src="https://lh4.googleusercontent.com/M7VXD5yUjYHrH9Y1-VeBhux-k_MZ2x-mwVVqpkybeUiXqB9VuAVoHqR4s8vbFXDCmdnsP3akg3JBkKlwbMwAba1zebw7xjXMe1FhuUYma_LcbkDSyk9AawLU9es2xfghhQ" height="200" width="auto" /><br><br>Розетки у панно у касс]]></description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="gx_media_links">
+          <value>https://lh4.googleusercontent.com/M7VXD5yUjYHrH9Y1-VeBhux-k_MZ2x-mwVVqpkybeUiXqB9VuAVoHqR4s8vbFXDCmdnsP3akg3JBkKlwbMwAba1zebw7xjXMe1FhuUYma_LcbkDSyk9AawLU9es2xfghhQ</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          37.6597863,55.7770799,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>KFC на Сходненской розеток нет</name>
+      <styleUrl>#icon-1561-E65100-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          37.4385014,55.8516037,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Калейдоскоп фудкорт розеток нет</name>
+      <styleUrl>#icon-1561-E65100-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          37.4436915,55.8505144,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Pomadoro</name>
+      <description>Вкусная пицца, розетки (3шт.) есть под столиком. Заряжаться разрешают</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.4141704,55.7256678,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетка возле большого колеса обозрения</name>
+      <styleUrl>#icon-1561-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          37.7503565,55.7701129,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетка в филевском парке</name>
+      <description>На стене домика</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.4739709,55.7475486,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетка на стене проката Северное Тушино</name>
+      <styleUrl>#icon-1561-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          37.4522437,55.8613476,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетка KFC у м. Партизанская</name>
+      <description>Под столиком слева от касс</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.7503813,55.7883762,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетка на платформе МЦК Хорошево</name>
+      <description>Розетка у верхнего конца складного подъемника для инвалидов на лестнице у первого вагона внешней стороны (CCW). Возможно, на других лестницах тоже есть</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.5071284,55.7773273,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Розетки в Glow Subs</name>
+      <description>Вкусные сендвичи и розетки</description>
+      <styleUrl>#icon-1561-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          37.5426167,55.6890101,0
+        </coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>
