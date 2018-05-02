@@ -30,7 +30,7 @@ func main() {
 	for update := range updChan {
 		if msg, ok := update.(tg.Message); ok {
 			if msg.Location != nil {
-				fmt.Println("Got location: ", msg.Location.Latitude, msg.Location.Longitude)
+				fmt.Println("Got location: ", msg.From.Id, msg.From.Username, msg.Location.Latitude, msg.Location.Longitude)
 
 				userLocation := s2.PointFromLatLng(s2.LatLngFromDegrees(msg.Location.Latitude, msg.Location.Longitude))
 
@@ -54,9 +54,9 @@ func main() {
 						go tg.SendPhotoByUrl(picUrl, msg.From.Id, msg.Id)
 					}
 				}
-
 			} else {
-				tg.SendMdMessage("Пришлите мне своё местоположение и я попытаюсь найти ближайшую к вам публичную розетку", msg.From.Id, 0)
+				fmt.Println("Got message: ", msg.From.Id, msg.From.Username, msg.Text)
+				tg.SendMdMessage("Пришлите мне своё местоположение и я попытаюсь найти ближайшую к вам публичную розетку. Это пока что первая, тестовая версия бота. Позже будет возможность добавить розетки в базу самому.", msg.From.Id, 0)
 			}
 		}
 	}
