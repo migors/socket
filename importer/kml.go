@@ -35,6 +35,8 @@ func FromKML(filename string) ([]storage.Socket, error) {
 	}
 
 	coordsRe := regexp.MustCompile(`^\s*(\-?\d+(?:\.\d+)?)\,(\-?\d+(?:\.\d+)?)\,`)
+	tagRemoveRe := regexp.MustCompile(`<[^>]+>`)
+	imgRe := regexp.MustCompile(`<img[^>]+src="([^"]*)"`)
 
 	sockets := make([]storage.Socket, 0, len(parsed.Document.Placemarks))
 	for _, placemark := range parsed.Document.Placemarks {
@@ -54,9 +56,19 @@ func FromKML(filename string) ([]storage.Socket, error) {
 				return nil, err
 			}
 		}
+
+		photos := []string{}
+		{
+			matches := imgRe.FindAllStringSubmatch(placemark.Description, -1)
+			for _, match := range matches {
+				photos = append(photos, match[1])
+			}
+		}
+
 		sockets = append(sockets, storage.Socket{
 			Name:        placemark.Name,
-			Description: placemark.Description,
+			Description: tagRemoveRe.ReplaceAllString(placemark.Description, " "),
+			Photos:      photos,
 			Lat:         lat,
 			Lng:         lng,
 			Point:       s2.PointFromLatLng(s2.LatLngFromDegrees(lat, lng)),

@@ -48,8 +48,11 @@ func main() {
 				if metersDist > maxSocketDistance {
 					tg.SendMdMessage("К сожалению, ближайшая розетка на расстоянии более чем "+formatDistance(maxSocketDistance)+" от этого места", msg.From.Id, msg.Id)
 				} else {
-					tg.SendLocation(closestSocket.Lat, closestSocket.Lng, msg.From.Id, msg.Id)
 					tg.SendMdMessage("Есть розетка в "+formatDistance(metersDist)+" от вас:\n"+closestSocket.Name+"\n"+closestSocket.Description, msg.From.Id, msg.Id)
+					tg.SendLocation(closestSocket.Lat, closestSocket.Lng, msg.From.Id, msg.Id)
+					for _, picUrl := range closestSocket.Photos {
+						go tg.SendPhotoByUrl(picUrl, msg.From.Id, msg.Id)
+					}
 				}
 
 			} else {
