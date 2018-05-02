@@ -57,6 +57,8 @@ func FromKML(filename string) ([]storage.Socket, error) {
 		sockets = append(sockets, storage.Socket{
 			Name:        placemark.Name,
 			Description: placemark.Description,
+			Lat:         lat,
+			Lng:         lng,
 			Point:       s2.PointFromLatLng(s2.LatLngFromDegrees(lat, lng)),
 		})
 	}
