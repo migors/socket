@@ -2,8 +2,15 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
+
 	"github.com/golang/geo/s2"
 
+	"github.com/pav5000/socketbot/db"
 	"github.com/pav5000/socketbot/importer"
 	"github.com/pav5000/socketbot/tg"
 )
@@ -25,10 +32,32 @@ func main() {
 
 	tg.LoadToken("token.txt")
 
+	{
+		sigs := make(chan os.Signal, 1)
+		signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+		go func() {
+			sig := <-sigs
+			fmt.Println()
+			log.Println("Got signal", sig)
+			log.Println("Closing DB")
+			db.Close()
+			log.Println("DB closed")
+			os.Exit(0)
+		}()
+	}
+
 	fmt.Println("Waiting for messages")
 	updChan := tg.StartCheckingUpdates()
 	for update := range updChan {
 		if msg, ok := update.(tg.Message); ok {
+
+			{
+				err := db.UpdateUserInfo(msg.From.Id, msg.From.FirstName, msg.From.LastName, msg.From.Username, msg.From.LanguageCode, time.Now())
+				if err != nil {
+					log.Println("Error updating user info: ", err)
+				}
+			}
+
 			if msg.Location != nil {
 				fmt.Println("Got location: ", msg.From.Id, msg.From.Username, msg.Location.Latitude, msg.Location.Longitude)
 

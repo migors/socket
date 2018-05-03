@@ -3,6 +3,8 @@ build: deps
 
 deps:
 	go get github.com/golang/geo/s2
+	go get github.com/mattn/go-sqlite3
+	go get github.com/jmoiron/sqlx
 
 run: build
 	./socketbot
