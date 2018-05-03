@@ -39,3 +39,15 @@ func SendPhotoByUrl(picUrl string, chatId uint64, replyId uint64) error {
 	}
 	return request("sendPhoto", params, nil)
 }
+
+func SendVideoByUrl(vidUrl string, chatId uint64, caption string, replyId uint64) error {
+	params := map[string]string{
+		"chat_id": fmt.Sprint(chatId),
+		"video":   vidUrl,
+		"caption": caption,
+	}
+	if replyId != 0 {
+		params["reply_to_message_id"] = fmt.Sprint(replyId)
+	}
+	return request("sendVideo", params, nil)
+}
