@@ -1,6 +1,7 @@
 package tg
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
@@ -50,4 +51,34 @@ func SendVideoByUrl(vidUrl string, chatId uint64, caption string, replyId uint64
 		params["reply_to_message_id"] = fmt.Sprint(replyId)
 	}
 	return request("sendVideo", params, nil)
+}
+
+type InputMediaPhoto struct {
+	Type  string `json:"type"`
+	Media string `json:"media"`
+}
+
+func SendPhotoGroup(photoUrls []string, chatId uint64, replyId uint64) error {
+	media := make([]InputMediaPhoto, 0, len(photoUrls))
+
+	for _, photoUrl := range photoUrls {
+		media = append(media, InputMediaPhoto{
+			Type:  "photo",
+			Media: photoUrl,
+		})
+	}
+
+	rawJson, err := json.Marshal(media)
+	if err != nil {
+		return err
+	}
+
+	params := map[string]string{
+		"chat_id": fmt.Sprint(chatId),
+		"media":   string(rawJson),
+	}
+	if replyId != 0 {
+		params["reply_to_message_id"] = fmt.Sprint(replyId)
+	}
+	return request("sendMediaGroup", params, nil)
 }
