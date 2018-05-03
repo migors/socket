@@ -1,5 +1,11 @@
-build:
+build: deps
 	go build -o socketbot main.go
+
+deps:
+	go get github.com/golang/geo/s2
+
+run: build
+	./socketbot
 
 docker: build
 	sudo docker build -t socketbot .

@@ -745,16 +745,6 @@
       </Point>
     </Placemark>
     <Placemark>
-      <name>Розеток нет!</name>
-      <description>В этом макдаке розеток нет.</description>
-      <styleUrl>#icon-1561-FF5252</styleUrl>
-      <Point>
-        <coordinates>
-          37.7180922,55.6122367,0
-        </coordinates>
-      </Point>
-    </Placemark>
-    <Placemark>
       <name>Розетки фудкорт Водолей</name>
       <description>На фудкорте на колоннах напротив Макдональдса есть пара розеток.</description>
       <styleUrl>#icon-1561-0288D1</styleUrl>
@@ -786,7 +776,7 @@
     </Placemark>
     <Placemark>
       <name>Кафе Фекла</name>
-      <description>Кафе на втором этаже автосалона. Розетка к лестницы.</description>
+      <description>Кафе на втором этаже автосалона. Розетка у лестницы.</description>
       <styleUrl>#icon-1561-0288D1</styleUrl>
       <Point>
         <coordinates>
@@ -819,7 +809,7 @@
       </Point>
     </Placemark>
     <Placemark>
-      <name>Вьтнамцы</name>
+      <name>Вьетнамцы</name>
       <description>2й этаж пару розеток есть</description>
       <styleUrl>#icon-1561-0288D1</styleUrl>
       <Point>
@@ -855,15 +845,6 @@
       <Point>
         <coordinates>
           37.5960356,55.77038,0
-        </coordinates>
-      </Point>
-    </Placemark>
-    <Placemark>
-      <name>В этом макдаке розеток нет</name>
-      <styleUrl>#icon-1561-E65100-nodesc</styleUrl>
-      <Point>
-        <coordinates>
-          38.8047194,55.0843044,0
         </coordinates>
       </Point>
     </Placemark>
@@ -996,16 +977,6 @@
       </Point>
     </Placemark>
     <Placemark>
-      <name>Розетка в макдаке на Киевской не работает</name>
-      <description>На тором этаже в углу справа от лестницы</description>
-      <styleUrl>#icon-1561-E65100</styleUrl>
-      <Point>
-        <coordinates>
-          37.5663087,55.7458593,0
-        </coordinates>
-      </Point>
-    </Placemark>
-    <Placemark>
       <name>розетка в Тушинском парке</name>
       <description><![CDATA[<img src="https://lh6.googleusercontent.com/SPa2nOB6gIKf0gANnJH4r7rNcT0_Za0jqfgN2WyLNHCF8UTdMaJiFPfkfW2pLZBt_zZeg5Whd84pIzIX7mN8mG9szkMkdhnD9lZljaXdkAgFI9LlaY8LxHxXrTTOGZoo" height="200" width="auto" /><br><br>]]></description>
       <styleUrl>#icon-1561-0288D1</styleUrl>
@@ -1082,7 +1053,7 @@
     </Placemark>
     <Placemark>
       <name>БК на Мясницкой</name>
-      <description><![CDATA[<img src="https://lh3.googleusercontent.com/BVpn6G5rlkL25lUQFF9WgBGCGFqn1hLnLH8icTpVSjysTMhbyZOg8ViJD1zhbyqTduXT9E4agN5lG4-tbk7xcrCqDWxPChvhu-irJo6EV0W00-vgoQ3NslXWgzNhjCiBsQ" height="200" width="auto" /><br><br>Розетка в углу под столиком, торой этаж]]></description>
+      <description><![CDATA[<img src="https://lh3.googleusercontent.com/BVpn6G5rlkL25lUQFF9WgBGCGFqn1hLnLH8icTpVSjysTMhbyZOg8ViJD1zhbyqTduXT9E4agN5lG4-tbk7xcrCqDWxPChvhu-irJo6EV0W00-vgoQ3NslXWgzNhjCiBsQ" height="200" width="auto" /><br><br>Розетка в углу под столиком, второй этаж]]></description>
       <styleUrl>#icon-1561-0288D1</styleUrl>
       <ExtendedData>
         <Data name="gx_media_links">
@@ -1107,24 +1078,6 @@
       <Point>
         <coordinates>
           37.6597863,55.7770799,0
-        </coordinates>
-      </Point>
-    </Placemark>
-    <Placemark>
-      <name>KFC на Сходненской розеток нет</name>
-      <styleUrl>#icon-1561-E65100-nodesc</styleUrl>
-      <Point>
-        <coordinates>
-          37.4385014,55.8516037,0
-        </coordinates>
-      </Point>
-    </Placemark>
-    <Placemark>
-      <name>Калейдоскоп фудкорт розеток нет</name>
-      <styleUrl>#icon-1561-E65100-nodesc</styleUrl>
-      <Point>
-        <coordinates>
-          37.4436915,55.8505144,0
         </coordinates>
       </Point>
     </Placemark>
