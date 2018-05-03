@@ -12,7 +12,3 @@ stop:
 
 restart: stop start
 	echo "restarted"
-
-deploy:
-	echo "Don't forget to commit before the deploy"
-	ssh pavl.uk -t 'bash -l -c "cd go/src/github.com/pav5000/socketbot && git pull && make docker && make restart"'

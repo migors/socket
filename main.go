@@ -34,6 +34,8 @@ func main() {
 
 				userLocation := s2.PointFromLatLng(s2.LatLngFromDegrees(msg.Location.Latitude, msg.Location.Longitude))
 
+				// Waiting while PointIndex is beign implemented in golang/geo/s2
+				// So, for now just linear scan
 				closestSocket := sockets[0]
 				minDist := closestSocket.Point.Distance(userLocation).Abs().Normalized()
 				for _, socket := range sockets {
