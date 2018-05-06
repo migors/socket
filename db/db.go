@@ -40,6 +40,14 @@ CREATE TABLE photos(
 	media_id    TEXT                  NOT NULL   DEFAULT "",
 	downloaded  INTEGER               NOT NULL   DEFAULT 0
 );
+
+CREATE TABLE session_data(
+   user                INTEGER   NOT NULL,
+   key                 TEXT      NOT NULL,
+   value               TEXT      NOT NULL   DEFAULT "",
+   UNIQUE(user, key) ON CONFLICT REPLACE
+);
+CREATE INDEX session_data_index ON session_data (user, key);
 `
 
 var db *sqlx.DB

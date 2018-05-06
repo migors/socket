@@ -9,10 +9,10 @@ import (
 
 	"github.com/golang/geo/s2"
 
-	"github.com/pav5000/socketbot/storage"
+	"github.com/pav5000/socketbot/model"
 )
 
-func FromKML(filename string) ([]storage.Socket, error) {
+func FromKML(filename string) ([]model.Socket, error) {
 	rawXml, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return nil, err
@@ -38,7 +38,7 @@ func FromKML(filename string) ([]storage.Socket, error) {
 	tagRemoveRe := regexp.MustCompile(`<[^>]+>`)
 	imgRe := regexp.MustCompile(`<img[^>]+src="([^"]*)"`)
 
-	sockets := make([]storage.Socket, 0, len(parsed.Document.Placemarks))
+	sockets := make([]model.Socket, 0, len(parsed.Document.Placemarks))
 	for _, placemark := range parsed.Document.Placemarks {
 		var lat, lng float64
 		{
@@ -65,7 +65,7 @@ func FromKML(filename string) ([]storage.Socket, error) {
 			}
 		}
 
-		sockets = append(sockets, storage.Socket{
+		sockets = append(sockets, model.Socket{
 			Name:        placemark.Name,
 			Description: tagRemoveRe.ReplaceAllString(placemark.Description, " "),
 			Photos:      photos,

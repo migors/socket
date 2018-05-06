@@ -1,6 +1,7 @@
 package db
 
 import (
+	"log"
 	"time"
 )
 
@@ -46,4 +47,17 @@ func UpdateUserInfo(id uint64, firstName string, lastName string, username strin
 	}
 
 	return err
+}
+
+func GetUserState(id uint64) (string, error) {
+	row := UsersRow{}
+	err := db.Get(&row, `SELECT chat_state FROM users WHERE id=?`, id)
+	return row.ChatState, err
+}
+
+func SetUserState(id uint64, state string) {
+	_, err := db.Exec(`UPDATE users SET chat_state=? WHERE id=?`, state, id)
+	if err != nil {
+		log.Println("Setting user state failed:", err)
+	}
 }
