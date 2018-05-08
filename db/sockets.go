@@ -8,6 +8,17 @@ import (
 	"github.com/pav5000/socketbot/model"
 )
 
+type SocketsRow struct {
+	Id               uint64  `db:"id"`
+	Lat              float64 `db:"lat"`
+	Lng              float64 `db:"lng"`
+	Name             string  `db:"name"`
+	Description      string  `db:"description"`
+	AddedBy          uint64  `db:"added_by"`
+	LastConfirmation int64   `db:"last_confirmation"`
+	Source           string  `db:"source"`
+}
+
 func AddSocket(socket model.Socket) (err error) {
 	tx, err := db.Beginx()
 	if err != nil {
@@ -54,4 +65,33 @@ func AddSocket(socket model.Socket) (err error) {
 	}
 
 	return nil
+}
+
+func GetAllSockets() ([]model.Socket, error) {
+	rows := []SocketsRow{}
+	err := db.Get(&rows, `SELECT * FROM sockets`)
+	if err != nil {
+		return nil, err
+	}
+
+	sockets := make([]model.Socket, 0, len(rows))
+	for _, row := range rows {
+		photoStrings, err := GetSocketPhotoStrings(row.Id)
+		if err != nil {
+			return nil, err
+		}
+		socket := model.Socket{
+			Name:             row.Name,
+			Description:      row.Description,
+			Photos:           photoStrings,
+			Lat:              row.Lat,
+			Lng:              row.Lng,
+			AddedBy:          row.AddedBy,
+			LastConfirmation: time.Unix(row.LastConfirmation, 0),
+		}
+		socket.Init()
+		sockets = append(sockets, socket)
+	}
+
+	return sockets, nil
 }

@@ -28,7 +28,8 @@ CREATE TABLE sockets(
    name                TEXT                  NOT NULL  DEFAULT "",
    description         TEXT                  NOT NULL  DEFAULT "",
    added_by            INTEGER               NOT NULL,
-   last_confirmation   INTEGER               NOT NULL  DEFAULT 0
+   last_confirmation   INTEGER               NOT NULL  DEFAULT 0,
+   source              TEXT                  NOT NULL  DEFAULT ""
 );
 
 CREATE TABLE photos(

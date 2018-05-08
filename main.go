@@ -178,6 +178,7 @@ func AddCommandCheck(msg tg.Message, chatState string) bool {
 				tg.SendMdMessage(`Произошла внутренняя ошибка, не могу добавить розетку в базу. Попробуйте позже.`, msg.From.Id, msg.Id)
 				log.Println("Error adding socket:", err)
 			} else {
+				go storage.UpdateSockets()
 				db.SetUserState(msg.From.Id, "")
 				db.ClearSessionValues(msg.From.Id)
 				tg.SendMdMessage(`Спасибо! Розетка добавлена в базу.`, msg.From.Id, msg.Id)

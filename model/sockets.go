@@ -16,3 +16,7 @@ type Socket struct {
 	AddedBy          uint64
 	LastConfirmation time.Time
 }
+
+func (s *Socket) Init() {
+	s.Point = s2.PointFromLatLng(s2.LatLngFromDegrees(s.Lat, s.Lng))
+}
