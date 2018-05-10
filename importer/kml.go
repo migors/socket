@@ -3,8 +3,11 @@ package importer
 import (
 	"encoding/xml"
 	"errors"
+	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"os"
 	"regexp"
 	"strconv"
 	"time"
@@ -20,10 +23,25 @@ var client = &http.Client{
 	Timeout: time.Second * 20,
 }
 
+func BackupKML(rawKml []byte) error {
+	err := os.MkdirAll("data/kml", 0777)
+	if err != nil {
+		return err
+	}
+	now := time.Now()
+	filename := fmt.Sprintf("data/kml/%04d_%02d_%02d.kml", now.Year(), now.Month(), now.Day())
+	return ioutil.WriteFile(filename, rawKml, 0666)
+}
+
 func FromKMLOnline() ([]model.Socket, error) {
 	rawKml, err := Download()
 	if err != nil {
 		return nil, err
+	}
+	err = BackupKML(rawKml)
+	if err != nil {
+		// it's not the fatal case
+		log.Println("Error while backing up KML: " + err.Error())
 	}
 	return FromKML(rawKml)
 }
