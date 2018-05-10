@@ -15,6 +15,7 @@ type Socket struct {
 	Point            s2.Point
 	AddedBy          uint64
 	LastConfirmation time.Time
+	Layer            string
 }
 
 func (s *Socket) Init() {

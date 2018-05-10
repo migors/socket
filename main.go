@@ -23,7 +23,6 @@ const (
 )
 
 func main() {
-
 	tg.LoadToken("token.txt")
 
 	{

@@ -16,7 +16,7 @@ type SocketsRow struct {
 	Description      string  `db:"description"`
 	AddedBy          uint64  `db:"added_by"`
 	LastConfirmation int64   `db:"last_confirmation"`
-	Source           string  `db:"source"`
+	Layer            string  `db:"layer"`
 }
 
 func AddSocket(socket model.Socket) (err error) {
@@ -36,13 +36,14 @@ func AddSocket(socket model.Socket) (err error) {
 		}
 	}()
 
-	_, err = tx.Exec(`INSERT INTO sockets (lat, lng, name, description, added_by, last_confirmation) VALUES(?,?,?,?,?,?)`,
+	_, err = tx.Exec(`INSERT INTO sockets (lat, lng, name, description, added_by, last_confirmation, layer) VALUES(?,?,?,?,?,?,?)`,
 		socket.Lat,
 		socket.Lng,
 		socket.Name,
 		socket.Description,
 		socket.AddedBy,
-		time.Now().Unix())
+		time.Now().Unix(),
+		"bot")
 	if err != nil {
 		return err
 	}
@@ -69,7 +70,7 @@ func AddSocket(socket model.Socket) (err error) {
 
 func GetAllSockets() ([]model.Socket, error) {
 	rows := []SocketsRow{}
-	err := db.Get(&rows, `SELECT * FROM sockets`)
+	err := db.Select(&rows, `SELECT * FROM sockets`)
 	if err != nil {
 		return nil, err
 	}
@@ -88,6 +89,7 @@ func GetAllSockets() ([]model.Socket, error) {
 			Lng:              row.Lng,
 			AddedBy:          row.AddedBy,
 			LastConfirmation: time.Unix(row.LastConfirmation, 0),
+			Layer:            row.Layer,
 		}
 		socket.Init()
 		sockets = append(sockets, socket)

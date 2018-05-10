@@ -12,7 +12,7 @@ type PhotosRow struct {
 
 func GetSocketPhotoStrings(socketId uint64) ([]string, error) {
 	var rows []PhotosRow
-	err := db.Get(&rows, `SELECT * FROM photos WHERE socket=?`, socketId)
+	err := db.Select(&rows, `SELECT * FROM photos WHERE socket=?`, socketId)
 	if err != nil {
 		return nil, err
 	}

@@ -1,9 +1,9 @@
 package storage
 
 import (
-	"fmt"
 	"log"
 	"sync"
+	"time"
 
 	"github.com/pav5000/socketbot/db"
 	"github.com/pav5000/socketbot/importer"
@@ -14,15 +14,7 @@ var sockets []model.Socket
 var socketLock sync.Mutex
 
 func init() {
-	var err error
-	sockets, err = importer.FromKML("sockets.kml")
-	if err != nil {
-		panic(err)
-	}
-	if len(sockets) == 0 {
-		panic("0 sockets in DB")
-	}
-	fmt.Println("Loaded", len(sockets), "sockets")
+	go SocketUpdater()
 }
 
 func GetAllSockets() []model.Socket {
@@ -35,12 +27,31 @@ func GetAllSockets() []model.Socket {
 	return res
 }
 
+func SocketUpdater() {
+	for {
+		UpdateSockets()
+		time.Sleep(time.Minute * 10)
+	}
+}
+
 func UpdateSockets() {
-	newSockets, err := db.GetAllSockets()
+	log.Println("Update sockets")
+	dbSockets, err := db.GetAllSockets()
 	if err != nil {
 		log.Println("Error updating sockets: " + err.Error())
 		return
 	}
+	log.Println("   From DB:", len(dbSockets))
+	newSockets := dbSockets
+
+	onlineSockets, err := importer.FromKMLOnline()
+	if err != nil {
+		log.Println("Error downloading new kml data: " + err.Error())
+	} else {
+		log.Println("   From KML:", len(onlineSockets))
+		newSockets = append(newSockets, onlineSockets...)
+	}
+
 	socketLock.Lock()
 	sockets = newSockets
 	socketLock.Unlock()

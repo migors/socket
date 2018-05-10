@@ -29,7 +29,7 @@ CREATE TABLE sockets(
    description         TEXT                  NOT NULL  DEFAULT "",
    added_by            INTEGER               NOT NULL,
    last_confirmation   INTEGER               NOT NULL  DEFAULT 0,
-   source              TEXT                  NOT NULL  DEFAULT ""
+   layer               TEXT                  NOT NULL  DEFAULT ""
 );
 
 CREATE TABLE photos(

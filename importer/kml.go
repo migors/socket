@@ -4,20 +4,31 @@ import (
 	"encoding/xml"
 	"errors"
 	"io/ioutil"
+	"net/http"
 	"regexp"
 	"strconv"
+	"time"
 
 	"github.com/golang/geo/s2"
 
 	"github.com/pav5000/socketbot/model"
 )
 
-func FromKML(filename string) ([]model.Socket, error) {
-	rawXml, err := ioutil.ReadFile(filename)
+const mapUrl = "https://www.google.com/maps/d/u/0/kml?mid=1z_3GfyNZp09HhOFbB5U6YSDr4PY&nl=1&lid=fHTGEqWZoeo&forcekml=1&cid=mp&cv=IDQMRld8Ryg.ru."
+
+var client = &http.Client{
+	Timeout: time.Second * 20,
+}
+
+func FromKMLOnline() ([]model.Socket, error) {
+	rawKml, err := Download()
 	if err != nil {
 		return nil, err
 	}
+	return FromKML(rawKml)
+}
 
+func FromKML(rawKml []byte) ([]model.Socket, error) {
 	var parsed struct {
 		XMLName  xml.Name `xml:"kml"`
 		Document struct {
@@ -29,7 +40,7 @@ func FromKML(filename string) ([]model.Socket, error) {
 		}
 	}
 
-	err = xml.Unmarshal(rawXml, &parsed)
+	err := xml.Unmarshal(rawKml, &parsed)
 	if err != nil {
 		return nil, err
 	}
@@ -76,4 +87,38 @@ func FromKML(filename string) ([]model.Socket, error) {
 	}
 
 	return sockets, nil
+}
+
+func Get(url string) ([]byte, error) {
+	res, err := client.Get(url)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Body.Close()
+	return ioutil.ReadAll(res.Body)
+}
+
+func Download() ([]byte, error) {
+	rawXml, err := Get(mapUrl)
+	if err != nil {
+		return nil, err
+	}
+
+	linkRes := struct {
+		XMLName xml.Name `xml:"kml"`
+		Href    struct {
+			Cdata []byte `xml:",cdata"`
+		} `xml:"Document>NetworkLink>Link>href"`
+	}{}
+
+	err = xml.Unmarshal(rawXml, &linkRes)
+	if err != nil {
+		return nil, err
+	}
+
+	if len(linkRes.Href.Cdata) == 0 {
+		return nil, errors.New("Empty link response:\n" + string(rawXml))
+	}
+
+	return Get(string(linkRes.Href.Cdata))
 }
