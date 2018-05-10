@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/pav5000/socketbot/logger"
 	"github.com/pav5000/socketbot/model"
 	"log"
 	"os"
@@ -85,7 +86,7 @@ func SendHelp(msg tg.Message) {
 }
 
 func ReceivedLocation(msg tg.Message) {
-	fmt.Println("Got location: ", msg.From.Id, msg.From.Username, msg.Location.Latitude, msg.Location.Longitude)
+	logger.Location(fmt.Sprintf("%d @%s (%s %s)", msg.From.Id, msg.From.Username, msg.From.FirstName, msg.From.LastName), msg.Location.Latitude, msg.Location.Longitude)
 
 	userLocation := s2.PointFromLatLng(s2.LatLngFromDegrees(msg.Location.Latitude, msg.Location.Longitude))
 
