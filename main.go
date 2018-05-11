@@ -46,6 +46,7 @@ func main() {
 		}()
 	}
 
+	time.Sleep(time.Second * 3)
 	fmt.Println("Waiting for messages")
 	updChan := tg.StartCheckingUpdates()
 	for update := range updChan {
@@ -73,11 +74,17 @@ func main() {
 			} else {
 				fmt.Println("Got message (state", chatState, "):", msg.From.Id, msg.From.Username, msg.From.FirstName, msg.From.LastName, msg.Text)
 
-				if msg.Text == "/add" || strings.HasPrefix(msg.Text, "/add ") {
+				// Need msg router here, will implement later
+				lowerText := strings.ToLower(msg.Text)
+				if lowerText == "/add" || strings.HasPrefix(lowerText, "/add ") {
 					ReceivedAddCommand(msg)
+				} else if lowerText == "/start" || strings.HasPrefix(lowerText, "/start ") {
+					SendHelp(msg)
+				} else if lowerText == "/help" || strings.HasPrefix(lowerText, "/help ") {
+					SendHelp(msg)
 				} else {
 					if !AddCommandCheck(msg, chatState) {
-						SendHelp(msg)
+						tg.SendMdMessage(`Неизвестная мне команда, попробуйте почитать /help`, msg.From.Id, msg.Id)
 					}
 				}
 			}
@@ -88,7 +95,8 @@ func main() {
 func SendHelp(msg tg.Message) {
 	tg.SendMdMessage("Пришлите мне своё местоположение (точку на карте) и я попытаюсь найти ближайшую к вам публичную розетку.", msg.From.Id, 0)
 	tg.SendVideoByUrl("https://pavl.uk/socketbot/usage.mp4", msg.From.Id, "Пример использования", 0)
-	tg.SendMdMessage("Другие команды:\n/add - добавить розетку", msg.From.Id, 0)
+	tg.SendMdMessage("Другие команды:\n/add - добавить розетку\n/help - показать это сообщение", msg.From.Id, 0)
+	tg.SendMdMessage("С вопросами, предложениями, критикой обращайтесь к @pav5000", msg.From.Id, 0)
 }
 
 func ReceivedLocation(msg tg.Message) {
@@ -188,6 +196,12 @@ func AddCommandCheck(msg tg.Message, chatState string) bool {
 				db.SetUserState(msg.From.Id, "")
 				db.ClearSessionValues(msg.From.Id)
 				tg.SendMdMessage(`Спасибо! Розетка добавлена в базу.`, msg.From.Id, msg.Id)
+
+				tg.SendMdMessage(
+					`Пользователь `+formatUser(msg.From)+" добавил розетку:\n"+socket.Name+"\n"+socket.Description,
+					logger.TgAdminId, 0)
+				tg.SendLocation(socket.Lat, socket.Lng, logger.TgAdminId, 0)
+				tg.SendPhotoGroup(socket.Photos, logger.TgAdminId, 0)
 			}
 		}
 		return true
@@ -200,5 +214,13 @@ func formatDistance(meters int64) string {
 		return fmt.Sprintf("%v км", float64(meters/100)/10)
 	} else {
 		return fmt.Sprintf("%d м", meters)
+	}
+}
+
+func formatUser(user tg.User) string {
+	if user.Username != "" {
+		return "@" + user.Username
+	} else {
+		return fmt.Sprintf("@%d (%s %s)", user.Id, user.FirstName, user.LastName)
 	}
 }

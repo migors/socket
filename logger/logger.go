@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	tgAdminId     uint64 = 117576436
+	TgAdminId     uint64 = 117576436
 	adminMsgPause        = time.Millisecond * 200
 )
 
@@ -25,7 +25,7 @@ func adminNotifier() {
 	time.Sleep(time.Millisecond * 500)
 	tg.WaitForReady()
 	for msg := range adminMsgChan {
-		tg.SendMdMessage("``` "+msg+" ```", tgAdminId, 0)
+		tg.SendMdMessage("``` "+msg+" ```", TgAdminId, 0)
 		time.Sleep(adminMsgPause)
 	}
 }
