@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -17,12 +18,23 @@ var client = &http.Client{
 	Timeout: time.Second * 60,
 }
 
+var ready sync.WaitGroup
+
+func init() {
+	ready.Add(1)
+}
+
+func WaitForReady() {
+	ready.Wait()
+}
+
 func LoadToken(filename string) {
 	raw, err := ioutil.ReadFile(filename)
 	if err != nil {
 		log.Fatal("Cannot read token file", err)
 	}
 	token = strings.TrimSpace(string(raw))
+	ready.Done()
 }
 
 type Response struct {

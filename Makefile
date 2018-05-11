@@ -1,17 +1,11 @@
-build: deps
-	go build -o socketbot main.go
-
-deps:
-	go get github.com/golang/geo/s2
-
-run: build
-	./socketbot
-
-docker: build
+build:
 	sudo docker build -t socketbot .
 
+run: build
+	sudo docker run --rm -ti -v `pwd`/data:/bot/data socketbot
+
 start:
-	sudo docker run -d --name=socketbot --restart=always socketbot
+	sudo docker run -d --name=socketbot --restart=always -v `pwd`/data:/bot/data socketbot
 
 stop:
 	sudo docker rm -f socketbot; true

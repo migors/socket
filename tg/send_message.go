@@ -15,6 +15,7 @@ func SendMdMessage(text string, chatId uint64, replyId uint64) error {
 	if replyId != 0 {
 		params["reply_to_message_id"] = fmt.Sprint(replyId)
 	}
+	logOutgoingMessage("sendMessage", params)
 	return request("sendMessage", params, nil)
 }
 
@@ -27,6 +28,7 @@ func SendLocation(lat float64, lon float64, chatId uint64, replyId uint64) error
 	if replyId != 0 {
 		params["reply_to_message_id"] = fmt.Sprint(replyId)
 	}
+	logOutgoingMessage("sendLocation", params)
 	return request("sendLocation", params, nil)
 }
 
@@ -38,6 +40,7 @@ func SendPhotoByUrl(picUrl string, chatId uint64, replyId uint64) error {
 	if replyId != 0 {
 		params["reply_to_message_id"] = fmt.Sprint(replyId)
 	}
+	logOutgoingMessage("sendPhoto", params)
 	return request("sendPhoto", params, nil)
 }
 
@@ -50,6 +53,7 @@ func SendVideoByUrl(vidUrl string, chatId uint64, caption string, replyId uint64
 	if replyId != 0 {
 		params["reply_to_message_id"] = fmt.Sprint(replyId)
 	}
+	logOutgoingMessage("sendVideo", params)
 	return request("sendVideo", params, nil)
 }
 
@@ -80,5 +84,6 @@ func SendPhotoGroup(photoUrls []string, chatId uint64, replyId uint64) error {
 	if replyId != 0 {
 		params["reply_to_message_id"] = fmt.Sprint(replyId)
 	}
+	logOutgoingMessage("sendMediaGroup", params)
 	return request("sendMediaGroup", params, nil)
 }
