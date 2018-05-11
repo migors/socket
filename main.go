@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/pav5000/socketbot/logger"
-	"github.com/pav5000/socketbot/model"
 	"log"
 	"os"
 	"os/signal"
@@ -14,6 +12,8 @@ import (
 	"github.com/golang/geo/s2"
 
 	"github.com/pav5000/socketbot/db"
+	"github.com/pav5000/socketbot/logger"
+	"github.com/pav5000/socketbot/model"
 	"github.com/pav5000/socketbot/storage"
 	"github.com/pav5000/socketbot/tg"
 )
@@ -24,6 +24,12 @@ const (
 )
 
 func main() {
+	defer func() {
+		if r := recover(); r != nil {
+			logger.Err("Catched panic in main:\n", r)
+			time.Sleep(time.Second * 2)
+		}
+	}()
 	tg.LoadToken("token.txt")
 
 	{
@@ -47,7 +53,7 @@ func main() {
 			{
 				err := db.UpdateUserInfo(msg.From.Id, msg.From.FirstName, msg.From.LastName, msg.From.Username, msg.From.LanguageCode, time.Now())
 				if err != nil {
-					log.Println("Error updating user info: ", err)
+					logger.Err("Error updating user info: ", err)
 				}
 			}
 
@@ -56,7 +62,7 @@ func main() {
 				var err error
 				chatState, err = db.GetUserState(msg.From.Id)
 				if err != nil {
-					log.Println("Error getting chat state: ", err)
+					logger.Err("Error getting chat state: ", err)
 				}
 			}
 
@@ -176,7 +182,7 @@ func AddCommandCheck(msg tg.Message, chatState string) bool {
 			err := db.AddSocket(socket)
 			if err != nil {
 				tg.SendMdMessage(`Произошла внутренняя ошибка, не могу добавить розетку в базу. Попробуйте позже.`, msg.From.Id, msg.Id)
-				log.Println("Error adding socket:", err)
+				logger.Err("Error adding socket: ", err)
 			} else {
 				go storage.UpdateSockets()
 				db.SetUserState(msg.From.Id, "")

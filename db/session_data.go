@@ -2,9 +2,10 @@ package db
 
 import (
 	"encoding/json"
-	"log"
 	"reflect"
 	"strconv"
+
+	"github.com/pav5000/socketbot/logger"
 )
 
 type SessionDataRow struct {
@@ -22,7 +23,7 @@ func SetSessionValue(user uint64, key string, value interface{}) {
 
 		rawJson, err := json.Marshal(value)
 		if err != nil {
-			log.Println("Error marshaling session value into json:", err)
+			logger.Err("Error marshaling session value into json: ", err)
 			return
 		}
 		value = string(rawJson)
@@ -30,7 +31,7 @@ func SetSessionValue(user uint64, key string, value interface{}) {
 
 	_, err := db.Exec(`INSERT INTO session_data (user, key, value) VALUES(?,?,?)`, user, key, value)
 	if err != nil {
-		log.Println("Error setting session value:", err)
+		logger.Err("Error setting session value: ", err)
 	}
 }
 
@@ -38,7 +39,7 @@ func GetSessionValue(user uint64, key string) string {
 	row := SessionDataRow{}
 	err := db.Get(&row, `SELECT value FROM session_data WHERE user=? AND key=?`, user, key)
 	if err != nil {
-		log.Println("Error getting session value:", err)
+		logger.Err("Error getting session value: ", err)
 	}
 	return row.Value
 }
@@ -47,7 +48,7 @@ func GetSessionValueFloat64(user uint64, key string) float64 {
 	str := GetSessionValue(user, key)
 	num, err := strconv.ParseFloat(str, 64)
 	if err != nil {
-		log.Println("Error converting session value '"+str+"' to float64:", err)
+		logger.Err("Error converting session value '", str, "' to float64: ", err)
 		return 0
 	}
 	return num
@@ -57,7 +58,7 @@ func GetSessionValueInt64(user uint64, key string) int64 {
 	str := GetSessionValue(user, key)
 	num, err := strconv.ParseInt(str, 10, 64)
 	if err != nil {
-		log.Println("Error converting session value '"+str+"' to int64:", err)
+		logger.Err("Error converting session value '", str, "' to int64: ", err)
 		return 0
 	}
 	return num
@@ -67,7 +68,7 @@ func GetSessionValueUint64(user uint64, key string) uint64 {
 	str := GetSessionValue(user, key)
 	num, err := strconv.ParseUint(str, 10, 64)
 	if err != nil {
-		log.Println("Error converting session value '"+str+"' to uint64:", err)
+		logger.Err("Error converting session value '", str, "' to uint64: ", err)
 		return 0
 	}
 	return num
@@ -77,12 +78,12 @@ func GetSessionValueJson(user uint64, key string, v interface{}) bool {
 	row := SessionDataRow{}
 	err := db.Get(&row, `SELECT value FROM session_data WHERE user=? AND key=?`, user, key)
 	if err != nil {
-		log.Println("Error getting session value:", err)
+		logger.Err("Error getting session value: ", err)
 		return false
 	}
 	err = json.Unmarshal([]byte(row.Value), v)
 	if err != nil {
-		log.Println("Error unmarshaling session value:", err)
+		logger.Err("Error unmarshaling session value: ", err)
 		return false
 	}
 	return true
@@ -91,6 +92,6 @@ func GetSessionValueJson(user uint64, key string, v interface{}) bool {
 func ClearSessionValues(user uint64) {
 	_, err := db.Exec(`DELETE FROM session_data WHERE user=?`, user)
 	if err != nil {
-		log.Println("Error clearing session values:", err)
+		logger.Err("Error clearing session values: ", err)
 	}
 }

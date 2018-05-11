@@ -15,7 +15,7 @@ RUN apt-get install -y ca-certificates
 WORKDIR /bot
 COPY --from=builder /go/src/github.com/pav5000/socketbot/socketbot .
 ADD token.txt token.txt
-# ENV HTTP_PROXY 192.168.2.1:3128
-# ENV HTTPS_PROXY 192.168.2.1:3128
+ENV HTTP_PROXY 192.168.2.1:3128
+ENV HTTPS_PROXY 192.168.2.1:3128
 
 CMD ["/bot/socketbot"]

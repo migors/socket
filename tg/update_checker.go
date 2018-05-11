@@ -28,6 +28,7 @@ func updateChecker(updChan chan interface{}) {
 		for _, update := range updates {
 			lastUpdateId = update.Id
 			if update.Message != nil {
+				logIncomingMessage(update.Message)
 				updChan <- *update.Message
 			}
 		}

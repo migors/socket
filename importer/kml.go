@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"regexp"
@@ -14,6 +13,7 @@ import (
 
 	"github.com/golang/geo/s2"
 
+	"github.com/pav5000/socketbot/logger"
 	"github.com/pav5000/socketbot/model"
 )
 
@@ -41,7 +41,7 @@ func FromKMLOnline() ([]model.Socket, error) {
 	err = BackupKML(rawKml)
 	if err != nil {
 		// it's not the fatal case
-		log.Println("Error while backing up KML: " + err.Error())
+		logger.Err("Error while backing up KML: " + err.Error())
 	}
 	return FromKML(rawKml)
 }

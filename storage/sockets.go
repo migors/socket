@@ -7,6 +7,7 @@ import (
 
 	"github.com/pav5000/socketbot/db"
 	"github.com/pav5000/socketbot/importer"
+	"github.com/pav5000/socketbot/logger"
 	"github.com/pav5000/socketbot/model"
 )
 
@@ -35,10 +36,10 @@ func SocketUpdater() {
 }
 
 func UpdateSockets() {
-	log.Println("Update sockets")
+	logger.Debug("Update sockets")
 	dbSockets, err := db.GetAllSockets()
 	if err != nil {
-		log.Println("Error updating sockets: " + err.Error())
+		logger.Err("Error updating sockets: ", err)
 		return
 	}
 	log.Println("   From DB:", len(dbSockets))
@@ -46,7 +47,7 @@ func UpdateSockets() {
 
 	onlineSockets, err := importer.FromKMLOnline()
 	if err != nil {
-		log.Println("Error downloading new kml data: " + err.Error())
+		logger.Err("Error downloading new kml data: ", err)
 	} else {
 		log.Println("   From KML:", len(onlineSockets))
 		newSockets = append(newSockets, onlineSockets...)
