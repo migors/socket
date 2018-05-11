@@ -79,8 +79,12 @@ func main() {
 				if lowerText == "/add" || strings.HasPrefix(lowerText, "/add ") {
 					ReceivedAddCommand(msg)
 				} else if lowerText == "/start" || strings.HasPrefix(lowerText, "/start ") {
+					db.ClearSessionValues(msg.From.Id)
+					db.SetUserState(msg.From.Id, "")
 					SendHelp(msg)
 				} else if lowerText == "/help" || strings.HasPrefix(lowerText, "/help ") {
+					db.ClearSessionValues(msg.From.Id)
+					db.SetUserState(msg.From.Id, "")
 					SendHelp(msg)
 				} else {
 					if !AddCommandCheck(msg, chatState) {
