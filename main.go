@@ -23,6 +23,7 @@ import (
 const (
 	maxSocketDistance         = 50000     // in meters
 	earthAvgRadius    float64 = 6371000.0 // in meters
+	MapLink                   = `https://www.google.com/maps/d/u/0/edit?mid=1z_3GfyNZp09HhOFbB5U6YSDr4PY&ll=55.64577355422915,37.757463619459486&z=11`
 )
 
 func main() {
@@ -88,6 +89,10 @@ func main() {
 					db.ClearSessionValues(msg.From.Id)
 					db.SetUserState(msg.From.Id, "")
 					SendHelp(msg)
+				} else if lowerText == "/map" || strings.HasPrefix(lowerText, "/map ") {
+					db.ClearSessionValues(msg.From.Id)
+					db.SetUserState(msg.From.Id, "")
+					SendMapLink(msg)
 				} else if lowerText == "/kml" {
 					if msg.From.Id == logger.TgAdminId {
 						db.ClearSessionValues(msg.From.Id)
@@ -107,8 +112,12 @@ func main() {
 func SendHelp(msg tg.Message) {
 	tg.SendMdMessage("Пришлите мне своё местоположение (точку на карте) и я попытаюсь найти ближайшую к вам публичную розетку.", msg.From.Id, 0)
 	tg.SendVideoByUrl("https://pavl.uk/socketbot/usage.mp4", msg.From.Id, "Пример использования", 0)
-	tg.SendMdMessage("Другие команды:\n/add - добавить розетку\n/help - показать это сообщение", msg.From.Id, 0)
+	tg.SendMdMessage("Другие команды:\n/add - добавить розетку\n/map - получить ссылку на общую карту розеток от Макса\n/help - показать это сообщение", msg.From.Id, 0)
 	tg.SendMdMessage("С вопросами, предложениями, критикой обращайтесь к @pav5000", msg.From.Id, 0)
+}
+
+func SendMapLink(msg tg.Message) {
+	tg.SendMdMessage(`[Карта доступных розеток](`+MapLink+`)`, msg.From.Id, msg.Id)
 }
 
 func ReceivedLocation(msg tg.Message) {
@@ -131,7 +140,7 @@ func ReceivedLocation(msg tg.Message) {
 
 	metersDist := int64(earthAvgRadius * float64(minDist))
 	if metersDist > maxSocketDistance {
-		tg.SendMdMessage("К сожалению, ближайшая розетка на расстоянии более чем "+formatDistance(maxSocketDistance)+" от этого места", msg.From.Id, msg.Id)
+		tg.SendMdMessage("К сожалению, ближайшая розетка на расстоянии более чем "+formatDistance(maxSocketDistance)+" от этого места. Вы можете помочь всем катающимся, если добавите доступные розетки в вашей местности через команду /add", msg.From.Id, msg.Id)
 	} else {
 		tg.SendMdMessage("Есть розетка в "+formatDistance(metersDist)+" от вас:\n"+closestSocket.Name+"\n"+closestSocket.Description, msg.From.Id, msg.Id)
 		tg.SendLocation(closestSocket.Lat, closestSocket.Lng, msg.From.Id, msg.Id)
@@ -209,7 +218,7 @@ func AddCommandCheck(msg tg.Message, chatState string) bool {
 				go storage.UpdateSockets()
 				db.SetUserState(msg.From.Id, "")
 				db.ClearSessionValues(msg.From.Id)
-				tg.SendMdMessage(`Спасибо! Розетка добавлена в базу.`, msg.From.Id, msg.Id)
+				tg.SendMdMessage(`Спасибо! Розетка добавлена в базу. В течение суток розетка должна появиться на [карте](`+MapLink+`)`, msg.From.Id, msg.Id)
 
 				tg.SendMdMessage(
 					`Пользователь `+formatUser(msg.From)+" добавил розетку:\n"+socket.Name+"\n"+socket.Description,
