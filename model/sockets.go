@@ -7,6 +7,7 @@ import (
 )
 
 type Socket struct {
+	Id               uint64
 	Name             string
 	Description      string
 	Photos           []string

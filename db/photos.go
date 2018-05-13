@@ -27,3 +27,33 @@ func GetSocketPhotoStrings(socketId uint64) ([]string, error) {
 	}
 	return photos, nil
 }
+
+func GetSocketPhotoUrls(socketId uint64) ([]string, error) {
+	var rows []PhotosRow
+	err := db.Select(&rows, `SELECT * FROM photos WHERE socket=?`, socketId)
+	if err != nil {
+		return nil, err
+	}
+
+	photos := make([]string, 0, len(rows))
+	for _, row := range rows {
+		if row.Url != "" {
+			photos = append(photos, row.Url)
+		}
+	}
+	return photos, nil
+}
+
+func GetAllPhotoRows() ([]PhotosRow, error) {
+	var rows []PhotosRow
+	err := db.Select(&rows, `SELECT * FROM photos`)
+	if err != nil {
+		return nil, err
+	}
+	return rows, nil
+}
+
+func SetPhotoUrl(photoId uint64, photoUrl string) error {
+	_, err := db.Exec(`UPDATE photos SET url=? WHERE id=?`, photoUrl, photoId)
+	return err
+}

@@ -82,6 +82,7 @@ func GetAllSockets() ([]model.Socket, error) {
 			return nil, err
 		}
 		socket := model.Socket{
+			Id:               row.Id,
 			Name:             row.Name,
 			Description:      row.Description,
 			Photos:           photoStrings,

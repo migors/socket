@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 	"os/signal"
@@ -12,6 +13,7 @@ import (
 	"github.com/golang/geo/s2"
 
 	"github.com/pav5000/socketbot/db"
+	"github.com/pav5000/socketbot/exporter"
 	"github.com/pav5000/socketbot/logger"
 	"github.com/pav5000/socketbot/model"
 	"github.com/pav5000/socketbot/storage"
@@ -86,6 +88,12 @@ func main() {
 					db.ClearSessionValues(msg.From.Id)
 					db.SetUserState(msg.From.Id, "")
 					SendHelp(msg)
+				} else if lowerText == "/kml" {
+					if msg.From.Id == logger.TgAdminId {
+						db.ClearSessionValues(msg.From.Id)
+						db.SetUserState(msg.From.Id, "")
+						go ReceivedKMLCommand(msg)
+					}
 				} else {
 					if !AddCommandCheck(msg, chatState) {
 						tg.SendMdMessage(`Неизвестная мне команда, попробуйте почитать /help`, msg.From.Id, msg.Id)
@@ -211,6 +219,53 @@ func AddCommandCheck(msg tg.Message, chatState string) bool {
 		return true
 	}
 	return false
+}
+
+func ReceivedKMLCommand(msg tg.Message) {
+	defer tg.SendMdMessage("Command finished", msg.From.Id, msg.Id)
+	photoRows, err := db.GetAllPhotoRows()
+	if err != nil {
+		tg.SendMdMessage("Cannot get all photos: "+err.Error(), msg.From.Id, msg.Id)
+		return
+	}
+
+	err = os.MkdirAll("data/www", 0777)
+	if err != nil {
+		tg.SendMdMessage("Cannot create the folder for photos: "+err.Error(), msg.From.Id, msg.Id)
+		return
+	}
+
+	downloadCount := 0
+	for _, photoRow := range photoRows {
+		if photoRow.Url == "" {
+			filename := fmt.Sprintf("%d_%d.jpg", photoRow.Socket, photoRow.Id)
+			err := tg.GetFile(photoRow.MediaId, "data/www/"+filename)
+			if err != nil {
+				tg.SendMdMessage("Cannot download a photo: "+err.Error(), msg.From.Id, msg.Id)
+				return
+			}
+			err = db.SetPhotoUrl(photoRow.Id, filename)
+			if err != nil {
+				tg.SendMdMessage("Cannot set photo url: "+err.Error(), msg.From.Id, msg.Id)
+				return
+			}
+			downloadCount++
+		}
+	}
+	tg.SendMdMessage(fmt.Sprintf("``` Total photos: %d\nWas downloaded: %d ```", len(photoRows), downloadCount), msg.From.Id, msg.Id)
+	rawKml, err := exporter.BuildKMLFile()
+	if err != nil {
+		tg.SendMdMessage("Cannot build KML file: "+err.Error(), msg.From.Id, msg.Id)
+		return
+	}
+
+	err = ioutil.WriteFile("data/www/sockets.kml", rawKml, 0666)
+	if err != nil {
+		tg.SendMdMessage("Cannot write KML file: "+err.Error(), msg.From.Id, msg.Id)
+		return
+	}
+
+	tg.SendMdMessage(exporter.PhotosUrlBase+"sockets.kml", msg.From.Id, msg.Id)
 }
 
 func formatDistance(meters int64) string {
