@@ -19,4 +19,3 @@ ADD token.txt token.txt
 # ENV HTTPS_PROXY 192.168.2.1:3128
 
 CMD ["/bot/socketbot"]
-

@@ -135,7 +135,9 @@ func ReceivedLocation(msg tg.Message) {
 	} else {
 		tg.SendMdMessage("Есть розетка в "+formatDistance(metersDist)+" от вас:\n"+closestSocket.Name+"\n"+closestSocket.Description, msg.From.Id, msg.Id)
 		tg.SendLocation(closestSocket.Lat, closestSocket.Lng, msg.From.Id, msg.Id)
-		tg.SendPhotoGroup(closestSocket.Photos, msg.From.Id, msg.Id)
+		if len(closestSocket.Photos) > 0 {
+			tg.SendPhotoGroup(closestSocket.Photos, msg.From.Id, msg.Id)
+		}
 	}
 }
 
