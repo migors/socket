@@ -22,7 +22,7 @@ var longClient = &http.Client{
 	Timeout: time.Second * 60,
 }
 var shortClient = &http.Client{
-	Timeout: time.Second * 5,
+	Timeout: time.Second * 20,
 }
 
 var ready sync.WaitGroup
