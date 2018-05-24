@@ -25,7 +25,7 @@ func backgroundLogger(filename string, c chan string) {
 	defer file.Close()
 
 	for msg := range c {
-		_, err = file.WriteString(msg)
+		_, err = file.WriteString(msg + "\n")
 		if err != nil {
 			log.Println("Cannot write chat log:", err)
 		} else {
@@ -40,7 +40,7 @@ func logIncomingMessage(v interface{}) {
 		log.Println("Cannot marshal chat log json:", err)
 		return
 	}
-	msg := fmt.Sprintln(time.Now().Unix(), "in", string(rawJson))
+	msg := fmt.Sprint(time.Now().Unix(), " in ", string(rawJson))
 	chatLogChan <- msg
 }
 
@@ -50,6 +50,6 @@ func logOutgoingMessage(method string, params map[string]string) {
 		log.Println("Cannot marshal chat log json:", err)
 		return
 	}
-	msg := fmt.Sprintln(time.Now().Unix(), "out", method, string(rawJson))
+	msg := fmt.Sprint(time.Now().Unix(), " out ", method, string(rawJson))
 	chatLogChan <- msg
 }
