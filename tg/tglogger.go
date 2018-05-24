@@ -8,21 +8,23 @@ import (
 	"time"
 )
 
-var logChan = make(chan string, 50)
+var chatLogChan = make(chan string, 50)
+var criticalLogChan = make(chan string)
 
 func init() {
-	go backgroundLogger()
+	go backgroundLogger("data/chat.log", chatLogChan)
+	go backgroundLogger("data/critical.log", criticalLogChan)
 }
 
-func backgroundLogger() {
-	file, err := os.OpenFile("data/chat.log", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0666)
+func backgroundLogger(filename string, c chan string) {
+	file, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
-		log.Fatal("Cannot write chat log:", err)
+		log.Fatal("Cannot write log to '"+filename+"':", err)
 		return
 	}
 	defer file.Close()
 
-	for msg := range logChan {
+	for msg := range c {
 		_, err = file.WriteString(msg)
 		if err != nil {
 			log.Println("Cannot write chat log:", err)
@@ -39,7 +41,7 @@ func logIncomingMessage(v interface{}) {
 		return
 	}
 	msg := fmt.Sprintln(time.Now().Unix(), "in", string(rawJson))
-	logChan <- msg
+	chatLogChan <- msg
 }
 
 func logOutgoingMessage(method string, params map[string]string) {
@@ -49,5 +51,5 @@ func logOutgoingMessage(method string, params map[string]string) {
 		return
 	}
 	msg := fmt.Sprintln(time.Now().Unix(), "out", method, string(rawJson))
-	logChan <- msg
+	chatLogChan <- msg
 }

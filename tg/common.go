@@ -13,9 +13,16 @@ import (
 	"time"
 )
 
+const (
+	retryTimeout = time.Millisecond * 500
+)
+
 var token string
-var client = &http.Client{
+var longClient = &http.Client{
 	Timeout: time.Second * 60,
+}
+var shortClient = &http.Client{
+	Timeout: time.Second * 5,
 }
 
 var ready sync.WaitGroup
@@ -42,6 +49,21 @@ type Response struct {
 	Result json.RawMessage `json:"result"`
 }
 
+func requestWithRetry(cmdName string, params map[string]string, v interface{}, retryCount int) error {
+	var err error
+	for i := 0; i < retryCount; i++ {
+		err = request(cmdName, params, v)
+		if err == nil {
+			return nil
+		}
+		time.Sleep(retryTimeout * time.Duration(i))
+	}
+	if err != nil {
+		criticalLogChan <- err.Error()
+	}
+	return err
+}
+
 func request(cmdName string, params map[string]string, v interface{}) error {
 	urlValues := make(url.Values, len(params))
 	for key, value := range params {
@@ -54,7 +76,12 @@ func request(cmdName string, params map[string]string, v interface{}) error {
 	}
 	// log.Println(req.URL.String())
 
-	res, err := client.Do(req)
+	var res *http.Response
+	if cmdName == "getUpdates" {
+		res, err = longClient.Do(req)
+	} else {
+		res, err = shortClient.Do(req)
+	}
 	if err != nil {
 		return err
 	}
@@ -79,10 +106,12 @@ func request(cmdName string, params map[string]string, v interface{}) error {
 		return errors.New("Result returned ok:false")
 	}
 
-	err = json.Unmarshal(parsed.Result, v)
-	if err != nil {
-		return err
+	if _, ok := v.(*Dummy); ok {
+	} else {
+		err = json.Unmarshal(parsed.Result, v)
+		if err != nil {
+			return err
+		}
 	}
-
 	return nil
 }

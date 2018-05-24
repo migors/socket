@@ -21,7 +21,7 @@ func GetFile(fileId string, targetPath string) error {
 	}
 
 	downloadUrl := "https://api.telegram.org/file/bot" + token + "/" + fileInfo.FilePath
-	res, err := client.Get(downloadUrl)
+	res, err := longClient.Get(downloadUrl)
 	if err != nil {
 		return err
 	}

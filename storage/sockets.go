@@ -1,7 +1,6 @@
 package storage
 
 import (
-	"log"
 	"sync"
 	"time"
 
@@ -36,20 +35,20 @@ func SocketUpdater() {
 }
 
 func UpdateSockets() {
-	logger.Debug("Update sockets")
+	// logger.Debug("Update sockets")
 	dbSockets, err := db.GetAllSockets()
 	if err != nil {
 		logger.Err("Error updating sockets: ", err)
 		return
 	}
-	log.Println("   From DB:", len(dbSockets))
+	// log.Println("   From DB:", len(dbSockets))
 	newSockets := dbSockets
 
 	onlineSockets, err := importer.FromKMLOnline()
 	if err != nil {
 		logger.Err("Error downloading new kml data: ", err)
 	} else {
-		log.Println("   From KML:", len(onlineSockets))
+		// log.Println("   From KML:", len(onlineSockets))
 		newSockets = append(newSockets, onlineSockets...)
 	}
 

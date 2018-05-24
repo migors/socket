@@ -5,6 +5,12 @@ import (
 	"fmt"
 )
 
+const (
+	messageRetryCount = 5
+)
+
+type Dummy struct{}
+
 func SendMdMessage(text string, chatId uint64, replyId uint64) error {
 	params := map[string]string{
 		"chat_id":                  fmt.Sprint(chatId),
@@ -16,7 +22,7 @@ func SendMdMessage(text string, chatId uint64, replyId uint64) error {
 		params["reply_to_message_id"] = fmt.Sprint(replyId)
 	}
 	logOutgoingMessage("sendMessage", params)
-	return request("sendMessage", params, nil)
+	return requestWithRetry("sendMessage", params, &Dummy{}, messageRetryCount)
 }
 
 func SendLocation(lat float64, lon float64, chatId uint64, replyId uint64) error {
@@ -29,7 +35,7 @@ func SendLocation(lat float64, lon float64, chatId uint64, replyId uint64) error
 		params["reply_to_message_id"] = fmt.Sprint(replyId)
 	}
 	logOutgoingMessage("sendLocation", params)
-	return request("sendLocation", params, nil)
+	return requestWithRetry("sendLocation", params, &Dummy{}, messageRetryCount)
 }
 
 func SendPhotoByUrl(picUrl string, chatId uint64, replyId uint64) error {
@@ -41,7 +47,7 @@ func SendPhotoByUrl(picUrl string, chatId uint64, replyId uint64) error {
 		params["reply_to_message_id"] = fmt.Sprint(replyId)
 	}
 	logOutgoingMessage("sendPhoto", params)
-	return request("sendPhoto", params, nil)
+	return requestWithRetry("sendPhoto", params, &Dummy{}, messageRetryCount)
 }
 
 func SendVideoByUrl(vidUrl string, chatId uint64, caption string, replyId uint64) error {
@@ -54,7 +60,7 @@ func SendVideoByUrl(vidUrl string, chatId uint64, caption string, replyId uint64
 		params["reply_to_message_id"] = fmt.Sprint(replyId)
 	}
 	logOutgoingMessage("sendVideo", params)
-	return request("sendVideo", params, nil)
+	return requestWithRetry("sendVideo", params, &Dummy{}, messageRetryCount)
 }
 
 type InputMediaPhoto struct {
@@ -85,5 +91,5 @@ func SendPhotoGroup(photoUrls []string, chatId uint64, replyId uint64) error {
 		params["reply_to_message_id"] = fmt.Sprint(replyId)
 	}
 	logOutgoingMessage("sendMediaGroup", params)
-	return request("sendMediaGroup", params, nil)
+	return requestWithRetry("sendMediaGroup", params, &Dummy{}, messageRetryCount)
 }
