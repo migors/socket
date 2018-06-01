@@ -25,13 +25,27 @@ type Photo struct {
 	FileSize int64  `json:"file_size"`
 }
 
+type Chat struct {
+	Id   uint64 `json:"id"`
+	Type string `json:"type"`
+}
+
 type Message struct {
 	Id          uint64    `json:"message_id"`
 	From        User      `json:"from"`
+	Chat        Chat      `json:"chat"`
 	ForwardFrom User      `json:"forward_from"`
 	Text        string    `json:"text"`
 	Location    *Location `json:"location"`
 	PhotoSizes  []Photo   `json:"photo"`
+}
+
+type CallbackQuery struct {
+	Id           string  `json:"id"`
+	From         User    `json:"from"`
+	Message      Message `json:"message"`
+	ChatInstance string  `json:"chat_instance"`
+	Data         string  `json:"data"`
 }
 
 func (msg *Message) GetLargestPhoto() Photo {
@@ -48,8 +62,9 @@ func (msg *Message) GetLargestPhoto() Photo {
 }
 
 type Update struct {
-	Id      uint64   `json:"update_id"`
-	Message *Message `json:"message"`
+	Id            uint64         `json:"update_id"`
+	Message       *Message       `json:"message"`
+	CallbackQuery *CallbackQuery `json:"callback_query"`
 }
 
 func GetUpdates(offset uint64, timeoutSec uint) ([]Update, error) {

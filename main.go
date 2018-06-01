@@ -106,6 +106,15 @@ func main() {
 				}
 			}
 		}
+		if query, ok := update.(tg.CallbackQuery); ok {
+			if query.Data == `"cancel"` {
+				if query.Message.Chat.Type == "private" {
+					db.ClearSessionValues(query.Message.Chat.Id)
+					db.SetUserState(query.Message.Chat.Id, "")
+					tg.SendMdMessage("Отменено", query.Message.Chat.Id, 0)
+				}
+			}
+		}
 	}
 }
 
@@ -150,10 +159,17 @@ func ReceivedLocation(msg tg.Message) {
 	}
 }
 
+func GetCancelButtonRow() []tg.InlineKeyboardButton {
+	return []tg.InlineKeyboardButton{{Text: "Отмена", CallbackData: "cancel"}}
+}
+
 func ReceivedAddCommand(msg tg.Message) {
 	db.ClearSessionValues(msg.From.Id)
 	db.SetUserState(msg.From.Id, "add_waiting_location")
-	tg.SendMdMessage(`Начинаем добавление новой розетки. Пришлите мне точку на карте, где находится розетка.`, msg.From.Id, msg.Id)
+	tg.SendMdMessageWithKeyboard(
+		`Начинаем добавление новой розетки. Пришлите мне точку на карте, где находится розетка.`,
+		msg.From.Id, msg.Id,
+		[][]tg.InlineKeyboardButton{GetCancelButtonRow()})
 }
 
 func AddCommandCheck(msg tg.Message, chatState string) bool {
@@ -164,7 +180,10 @@ func AddCommandCheck(msg tg.Message, chatState string) bool {
 			db.SetSessionValue(msg.From.Id, "lat", msg.Location.Latitude)
 			db.SetSessionValue(msg.From.Id, "lng", msg.Location.Longitude)
 			db.SetUserState(msg.From.Id, "add_waiting_name")
-			tg.SendMdMessage(`Отлично, теперь напишите название заведения, в котором расположена розетка или какой-нибудь ориентир, кратко. Например: "Бургер Кинг", "Сушивок", "Беседка", "Платформа МЦК"`, msg.From.Id, msg.Id)
+			tg.SendMdMessageWithKeyboard(
+				`Отлично, теперь напишите название заведения, в котором расположена розетка или какой-нибудь ориентир, кратко. Например: "Бургер Кинг", "Сушивок", "Беседка", "Платформа МЦК"`,
+				msg.From.Id, msg.Id,
+				[][]tg.InlineKeyboardButton{GetCancelButtonRow()})
 		}
 		return true
 	} else if chatState == "add_waiting_name" {
@@ -173,7 +192,10 @@ func AddCommandCheck(msg tg.Message, chatState string) bool {
 		} else {
 			db.SetSessionValue(msg.From.Id, "name", msg.Text)
 			db.SetUserState(msg.From.Id, "add_waiting_description")
-			tg.SendMdMessage(`Отлично, теперь одним сообщением напишите подробнее, где расположена розетка внутри и как её найти.`, msg.From.Id, msg.Id)
+			tg.SendMdMessageWithKeyboard(
+				`Отлично, теперь одним сообщением напишите подробнее, где расположена розетка внутри и как её найти.`,
+				msg.From.Id, msg.Id,
+				[][]tg.InlineKeyboardButton{GetCancelButtonRow()})
 		}
 		return true
 	} else if chatState == "add_waiting_description" {
@@ -182,7 +204,10 @@ func AddCommandCheck(msg tg.Message, chatState string) bool {
 		} else {
 			db.SetSessionValue(msg.From.Id, "description", msg.Text)
 			db.SetUserState(msg.From.Id, "add_waiting_near_photo")
-			tg.SendMdMessage(`Замечательно, теперь прикрепите фотографию, на которой будет видна сама розетка`, msg.From.Id, msg.Id)
+			tg.SendMdMessageWithKeyboard(
+				`Замечательно, теперь прикрепите фотографию, на которой будет видна сама розетка`,
+				msg.From.Id, msg.Id,
+				[][]tg.InlineKeyboardButton{GetCancelButtonRow()})
 		}
 		return true
 	} else if chatState == "add_waiting_near_photo" {
@@ -191,7 +216,13 @@ func AddCommandCheck(msg tg.Message, chatState string) bool {
 		} else {
 			db.SetSessionValue(msg.From.Id, "photo1", msg.GetLargestPhoto().FileId)
 			db.SetUserState(msg.From.Id, "add_waiting_far_photo")
-			tg.SendMdMessage(`Последний шаг, прикрепите обзорное фото входа в заведение.`, msg.From.Id, msg.Id)
+			tg.SendMdMessageWithKeyboard(
+				`Последний шаг, прикрепите обзорное фото входа в заведение.`,
+				msg.From.Id, msg.Id,
+				[][]tg.InlineKeyboardButton{
+					// []tg.InlineKeyboardButton{{Text: "Пропустить этот шаг", CallbackData: "skip"}},
+					GetCancelButtonRow(),
+				})
 		}
 		return true
 	} else if chatState == "add_waiting_far_photo" {

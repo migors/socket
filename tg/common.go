@@ -1,6 +1,7 @@
 package tg
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -80,11 +81,13 @@ func request(cmdName string, params map[string]string, v interface{}) error {
 		urlValues[key] = []string{value}
 	}
 
-	req, err := http.NewRequest("GET", "https://api.telegram.org/bot"+token+"/"+cmdName+"?"+urlValues.Encode(), nil)
+	requestBody := bytes.NewBuffer([]byte(urlValues.Encode()))
+	req, err := http.NewRequest("GET", "https://api.telegram.org/bot"+token+"/"+cmdName, requestBody)
 	if err != nil {
 		return err
 	}
-	// log.Println(req.URL.String())
+	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	// log.Println(req.URL.String() + "    " + urlValues.Encode())
 
 	var res *http.Response
 	if cmdName == "getUpdates" {
@@ -99,7 +102,8 @@ func request(cmdName string, params map[string]string, v interface{}) error {
 	defer res.Body.Close()
 
 	if res.StatusCode != http.StatusOK {
-		return errors.New(fmt.Sprintf("Wrong status code: %d", res.StatusCode))
+		bodyData, _ := ioutil.ReadAll(res.Body)
+		return errors.New(fmt.Sprintf("Wrong status code: %d; Body: %s", res.StatusCode, bodyData))
 	}
 
 	rawJson, err := ioutil.ReadAll(res.Body)

@@ -31,6 +31,10 @@ func updateChecker(updChan chan interface{}) {
 				logIncomingMessage(update.Message)
 				updChan <- *update.Message
 			}
+			if update.CallbackQuery != nil {
+				logIncomingMessage(update.CallbackQuery)
+				updChan <- *update.CallbackQuery
+			}
 		}
 		lastUpdateId++
 	}
