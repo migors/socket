@@ -15,14 +15,24 @@ import (
 
 const (
 	retryTimeout = time.Millisecond * 500
+	requestRate  = time.Millisecond * 500
 )
 
+var requestRateLimiter = time.NewTicker(requestRate)
 var token string
 var longClient = &http.Client{
 	Timeout: time.Second * 60,
+	Transport: &http.Transport{
+		MaxIdleConns:        100,
+		MaxIdleConnsPerHost: 100,
+	},
 }
 var shortClient = &http.Client{
 	Timeout: time.Second * 20,
+	Transport: &http.Transport{
+		MaxIdleConns:        100,
+		MaxIdleConnsPerHost: 100,
+	},
 }
 
 var ready sync.WaitGroup
@@ -80,6 +90,7 @@ func request(cmdName string, params map[string]string, v interface{}) error {
 	if cmdName == "getUpdates" {
 		res, err = longClient.Do(req)
 	} else {
+		<-requestRateLimiter.C
 		res, err = shortClient.Do(req)
 	}
 	if err != nil {
