@@ -6,6 +6,8 @@ import (
 	"fmt"
 )
 
+type InlineKeyboard [][]InlineKeyboardButton
+
 type InlineKeyboardButton struct {
 	Text         string
 	Url          string
@@ -27,6 +29,26 @@ func (btn *InlineKeyboardButton) marshal() (inlineKeyboardButton, error) {
 	}, nil
 }
 
+func (keyboard InlineKeyboard) marshal() (string, error) {
+	processedKeyboard := make([][]inlineKeyboardButton, 0, len(keyboard))
+	for _, row := range keyboard {
+		processedRow := make([]inlineKeyboardButton, 0, len(row))
+		for _, btn := range row {
+			marshaled, err := btn.marshal()
+			if err != nil {
+				return "", err
+			}
+			processedRow = append(processedRow, marshaled)
+		}
+		processedKeyboard = append(processedKeyboard, processedRow)
+	}
+	rawJson, err := json.Marshal(ReplyMarkup{InlineKeyboard: processedKeyboard})
+	if err != nil {
+		return "", err
+	}
+	return string(rawJson), nil
+}
+
 type inlineKeyboardButton struct {
 	Text         string `json:"text,omitempty"`
 	Url          string `json:"url,omitempty"`
@@ -45,23 +67,11 @@ func SendMdMessageWithKeyboard(text string, chatId uint64, replyId uint64, keybo
 		"disable_web_page_preview": "true",
 	}
 	{
-		processedKeyboard := make([][]inlineKeyboardButton, 0, len(keyboard))
-		for _, row := range keyboard {
-			processedRow := make([]inlineKeyboardButton, 0, len(row))
-			for _, btn := range row {
-				marshaled, err := btn.marshal()
-				if err != nil {
-					return err
-				}
-				processedRow = append(processedRow, marshaled)
-			}
-			processedKeyboard = append(processedKeyboard, processedRow)
-		}
-		rawJson, err := json.Marshal(ReplyMarkup{InlineKeyboard: processedKeyboard})
+		keyboardString, err := InlineKeyboard(keyboard).marshal()
 		if err != nil {
 			return err
 		}
-		params["reply_markup"] = string(rawJson)
+		params["reply_markup"] = keyboardString
 	}
 	if replyId != 0 {
 		params["reply_to_message_id"] = fmt.Sprint(replyId)

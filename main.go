@@ -111,6 +111,7 @@ func main() {
 				if query.Message.Chat.Type == "private" {
 					db.ClearSessionValues(query.Message.Chat.Id)
 					db.SetUserState(query.Message.Chat.Id, "")
+					tg.EditInlineKeyboard(query.Message.Id, query.Message.Chat.Id, nil)
 					tg.SendMdMessage("Отменено", query.Message.Chat.Id, 0)
 				}
 			}
