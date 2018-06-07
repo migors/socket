@@ -13,8 +13,8 @@ import (
 
 	"github.com/golang/geo/s2"
 
-	"github.com/pav5000/socketbot/logger"
-	"github.com/pav5000/socketbot/model"
+	"bitbucket.org/pav5000/socketbot/logger"
+	"bitbucket.org/pav5000/socketbot/model"
 )
 
 const mapUrl = "https://www.google.com/maps/d/u/0/kml?mid=1z_3GfyNZp09HhOFbB5U6YSDr4PY&nl=1&lid=fHTGEqWZoeo&forcekml=1&cid=mp&cv=IDQMRld8Ryg.ru."

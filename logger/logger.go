@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/pav5000/socketbot/tg"
+	"bitbucket.org/pav5000/socketbot/tg"
 )
 
 const (

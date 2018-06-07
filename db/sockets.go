@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/pav5000/socketbot/model"
+	"bitbucket.org/pav5000/socketbot/model"
 )
 
 type SocketsRow struct {

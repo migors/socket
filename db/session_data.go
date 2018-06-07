@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"strconv"
 
-	"github.com/pav5000/socketbot/logger"
+	"bitbucket.org/pav5000/socketbot/logger"
 )
 
 type SessionDataRow struct {

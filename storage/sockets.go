@@ -4,10 +4,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/pav5000/socketbot/db"
-	"github.com/pav5000/socketbot/importer"
-	"github.com/pav5000/socketbot/logger"
-	"github.com/pav5000/socketbot/model"
+	"bitbucket.org/pav5000/socketbot/db"
+	"bitbucket.org/pav5000/socketbot/importer"
+	"bitbucket.org/pav5000/socketbot/logger"
+	"bitbucket.org/pav5000/socketbot/model"
 )
 
 var sockets []model.Socket

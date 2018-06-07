@@ -12,12 +12,12 @@ import (
 
 	"github.com/golang/geo/s2"
 
-	"github.com/pav5000/socketbot/db"
-	"github.com/pav5000/socketbot/exporter"
-	"github.com/pav5000/socketbot/logger"
-	"github.com/pav5000/socketbot/model"
-	"github.com/pav5000/socketbot/storage"
-	"github.com/pav5000/socketbot/tg"
+	"bitbucket.org/pav5000/socketbot/db"
+	"bitbucket.org/pav5000/socketbot/exporter"
+	"bitbucket.org/pav5000/socketbot/logger"
+	"bitbucket.org/pav5000/socketbot/model"
+	"bitbucket.org/pav5000/socketbot/storage"
+	"bitbucket.org/pav5000/socketbot/tg"
 )
 
 const (

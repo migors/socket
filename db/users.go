@@ -3,7 +3,7 @@ package db
 import (
 	"time"
 
-	"github.com/pav5000/socketbot/logger"
+	"bitbucket.org/pav5000/socketbot/logger"
 )
 
 type UsersRow struct {

@@ -5,7 +5,7 @@ import (
 	"encoding/xml"
 	"fmt"
 
-	"github.com/pav5000/socketbot/db"
+	"bitbucket.org/pav5000/socketbot/db"
 )
 
 const PhotosUrlBase = "https://pavl.uk/sockets/"
