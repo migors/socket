@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"bitbucket.org/pav5000/socketbot/logger"
+	"bitbucket.org/pav5000/socketbot/tg"
 )
 
 type UsersRow struct {
@@ -19,9 +20,10 @@ type UsersRow struct {
 
 // Update user info
 // Is called every message to check if user updated it's name and other fields
-func UpdateUserInfo(id uint64, firstName string, lastName string, username string, languageCode string, lastMessage time.Time) error {
+func UpdateUserInfo(user tg.User) error {
+	lastMessage := time.Now()
 	var count int
-	err := db.Get(&count, `SELECT count(*) FROM users WHERE id=?`, id)
+	err := db.Get(&count, `SELECT count(*) FROM users WHERE id=?`, user.Id)
 	if err != nil {
 		return err
 	}
@@ -29,22 +31,22 @@ func UpdateUserInfo(id uint64, firstName string, lastName string, username strin
 	if count == 0 {
 		_, err = db.Exec(
 			`INSERT OR REPLACE INTO users (id, first_name, last_name, username, language_code, first_message, last_message) VALUES(?,?,?,?,?,?,?)`,
-			id,
-			firstName,
-			lastName,
-			username,
-			languageCode,
+			user.Id,
+			user.FirstName,
+			user.LastName,
+			user.Username,
+			user.LanguageCode,
 			lastMessage.Unix(),
 			lastMessage.Unix())
 	} else {
 		_, err = db.Exec(
 			`UPDATE users SET first_name=?, last_name=?, username=?, language_code=?, last_message=? WHERE id=?`,
-			firstName,
-			lastName,
-			username,
-			languageCode,
+			user.FirstName,
+			user.LastName,
+			user.Username,
+			user.LanguageCode,
 			lastMessage.Unix(),
-			id)
+			user.Id)
 	}
 
 	return err

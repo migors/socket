@@ -55,7 +55,7 @@ func main() {
 	for update := range updChan {
 		if msg, ok := update.(tg.Message); ok {
 			{
-				err := db.UpdateUserInfo(msg.From.Id, msg.From.FirstName, msg.From.LastName, msg.From.Username, msg.From.LanguageCode, time.Now())
+				err := db.UpdateUserInfo(msg.From)
 				if err != nil {
 					logger.Err("Error updating user info: ", err)
 				}
@@ -107,6 +107,22 @@ func main() {
 			}
 		}
 		if query, ok := update.(tg.CallbackQuery); ok {
+			{
+				err := db.UpdateUserInfo(query.From)
+				if err != nil {
+					logger.Err("Error updating user info: ", err)
+				}
+			}
+
+			var chatState string
+			{
+				var err error
+				chatState, err = db.GetUserState(query.From.Id)
+				if err != nil {
+					logger.Err("Error getting chat state: ", err)
+				}
+			}
+
 			if query.Data == `"cancel"` {
 				if query.Message.Chat.Type == "private" {
 					db.ClearSessionValues(query.Message.Chat.Id)
@@ -114,6 +130,8 @@ func main() {
 					tg.EditInlineKeyboard(query.Message.Id, query.Message.Chat.Id, nil)
 					tg.SendMdMessage("Отменено", query.Message.Chat.Id, 0)
 				}
+			} else {
+				AddCommandCallback(query, chatState)
 			}
 		}
 	}
@@ -173,7 +191,34 @@ func ReceivedAddCommand(msg tg.Message) {
 		[][]tg.InlineKeyboardButton{GetCancelButtonRow()})
 }
 
+func ClearInlineKeyboard(query tg.CallbackQuery) {
+	tg.EditInlineKeyboard(query.Message.Id, query.Message.Chat.Id, nil)
+}
+
+func AddCommandCallback(query tg.CallbackQuery, chatState string) bool {
+	if !strings.HasPrefix(chatState, "add_") {
+		return false
+	}
+	if chatState == "add_waiting_near_photo" {
+		ClearInlineKeyboard(query)
+		AddCommandFinish(query.From)
+		return true
+	} else if chatState == "add_waiting_far_photo" {
+		ClearInlineKeyboard(query)
+		AddCommandFinish(query.From)
+		return true
+	} else {
+		ClearInlineKeyboard(query)
+		tg.SendMdMessage(`Невозможно пропустить этот шаг`, query.From.Id, 0)
+		return true
+	}
+	return false
+}
+
 func AddCommandCheck(msg tg.Message, chatState string) bool {
+	if !strings.HasPrefix(chatState, "add_") {
+		return false
+	}
 	if chatState == "add_waiting_location" {
 		if msg.Location == nil {
 			tg.SendMdMessage(`Вы не прикрепили точку на карте. Нажмите значок скрепки, выберите "Геопозиция" и перетащите маркер в нужное место.`, msg.From.Id, msg.Id)
@@ -204,24 +249,32 @@ func AddCommandCheck(msg tg.Message, chatState string) bool {
 			tg.SendMdMessage(`Вы ничего не написали, пожалуйста, опишите как найти розетку`, msg.From.Id, msg.Id)
 		} else {
 			db.SetSessionValue(msg.From.Id, "description", msg.Text)
+			db.SetSessionValue(msg.From.Id, "photos", []string{})
 			db.SetUserState(msg.From.Id, "add_waiting_near_photo")
 			tg.SendMdMessageWithKeyboard(
 				`Замечательно, теперь прикрепите фотографию, на которой будет видна сама розетка`,
 				msg.From.Id, msg.Id,
-				[][]tg.InlineKeyboardButton{GetCancelButtonRow()})
+				[][]tg.InlineKeyboardButton{
+					[]tg.InlineKeyboardButton{{Text: "Пропустить этот шаг", CallbackData: "skip"}},
+					GetCancelButtonRow(),
+				})
 		}
 		return true
 	} else if chatState == "add_waiting_near_photo" {
 		if len(msg.PhotoSizes) == 0 {
 			tg.SendMdMessage(`Вы не прислали фотографию. Пожалуйста, прикрепите фотографию, на которой видна сама розетка.`, msg.From.Id, msg.Id)
 		} else {
-			db.SetSessionValue(msg.From.Id, "photo1", msg.GetLargestPhoto().FileId)
+			var photos []string
+			db.GetSessionValueJson(msg.From.Id, "photos", &photos)
+			photos = append(photos, msg.GetLargestPhoto().FileId)
+			db.SetSessionValue(msg.From.Id, "photos", photos)
+
 			db.SetUserState(msg.From.Id, "add_waiting_far_photo")
 			tg.SendMdMessageWithKeyboard(
 				`Последний шаг, прикрепите обзорное фото входа в заведение.`,
 				msg.From.Id, msg.Id,
 				[][]tg.InlineKeyboardButton{
-					// []tg.InlineKeyboardButton{{Text: "Пропустить этот шаг", CallbackData: "skip"}},
+					[]tg.InlineKeyboardButton{{Text: "Пропустить этот шаг", CallbackData: "skip"}},
 					GetCancelButtonRow(),
 				})
 		}
@@ -230,38 +283,45 @@ func AddCommandCheck(msg tg.Message, chatState string) bool {
 		if len(msg.PhotoSizes) == 0 {
 			tg.SendMdMessage(`Вы не прислали фотографию. Пожалуйста, прикрепите обзорное фото входа в заведение.`, msg.From.Id, msg.Id)
 		} else {
-			socket := model.Socket{
-				Lat:         db.GetSessionValueFloat64(msg.From.Id, "lat"),
-				Lng:         db.GetSessionValueFloat64(msg.From.Id, "lng"),
-				Name:        db.GetSessionValue(msg.From.Id, "name"),
-				Description: db.GetSessionValue(msg.From.Id, "description"),
-				Photos: []string{
-					db.GetSessionValue(msg.From.Id, "photo1"),
-					msg.GetLargestPhoto().FileId,
-				},
-				AddedBy: msg.From.Id,
-			}
+			var photos []string
+			db.GetSessionValueJson(msg.From.Id, "photos", &photos)
+			photos = append(photos, msg.GetLargestPhoto().FileId)
+			db.SetSessionValue(msg.From.Id, "photos", photos)
 
-			err := db.AddSocket(socket)
-			if err != nil {
-				tg.SendMdMessage(`Произошла внутренняя ошибка, не могу добавить розетку в базу. Попробуйте позже.`, msg.From.Id, msg.Id)
-				logger.Err("Error adding socket: ", err)
-			} else {
-				go storage.UpdateSockets()
-				db.SetUserState(msg.From.Id, "")
-				db.ClearSessionValues(msg.From.Id)
-				tg.SendMdMessage(`Спасибо! Розетка добавлена в базу. В течение суток розетка должна появиться на [карте](`+MapLink+`)`, msg.From.Id, msg.Id)
-
-				tg.SendMdMessage(
-					`Пользователь `+formatUser(msg.From)+" добавил розетку:\n"+socket.Name+"\n"+socket.Description,
-					logger.TgAdminId, 0)
-				tg.SendLocation(socket.Lat, socket.Lng, logger.TgAdminId, 0)
-				tg.SendPhotoGroup(socket.Photos, logger.TgAdminId, 0)
-			}
+			AddCommandFinish(msg.From)
 		}
 		return true
 	}
 	return false
+}
+
+func AddCommandFinish(user tg.User) {
+	socket := model.Socket{
+		Lat:         db.GetSessionValueFloat64(user.Id, "lat"),
+		Lng:         db.GetSessionValueFloat64(user.Id, "lng"),
+		Name:        db.GetSessionValue(user.Id, "name"),
+		Description: db.GetSessionValue(user.Id, "description"),
+		AddedBy:     user.Id,
+	}
+
+	db.GetSessionValueJson(user.Id, "photos", &socket.Photos)
+
+	err := db.AddSocket(socket)
+	if err != nil {
+		tg.SendMdMessage(`Произошла внутренняя ошибка, не могу добавить розетку в базу. Попробуйте позже.`, user.Id, 0)
+		logger.Err("Error adding socket: ", err)
+	} else {
+		go storage.UpdateSockets()
+		db.SetUserState(user.Id, "")
+		db.ClearSessionValues(user.Id)
+		tg.SendMdMessage(`Спасибо! Розетка добавлена в базу. В течение суток розетка должна появиться на [карте](`+MapLink+`)`, user.Id, 0)
+
+		tg.SendMdMessage(
+			`Пользователь `+formatUser(user)+" добавил розетку:\n"+socket.Name+"\n"+socket.Description,
+			logger.TgAdminId, 0)
+		tg.SendLocation(socket.Lat, socket.Lng, logger.TgAdminId, 0)
+		tg.SendPhotoGroup(socket.Photos, logger.TgAdminId, 0)
+	}
 }
 
 func ReceivedKMLCommand(msg tg.Message) {

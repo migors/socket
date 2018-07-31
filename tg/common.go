@@ -26,6 +26,7 @@ var longClient = &http.Client{
 	Transport: &http.Transport{
 		MaxIdleConns:        100,
 		MaxIdleConnsPerHost: 100,
+		Proxy:               http.ProxyFromEnvironment,
 	},
 }
 var shortClient = &http.Client{
@@ -33,6 +34,7 @@ var shortClient = &http.Client{
 	Transport: &http.Transport{
 		MaxIdleConns:        100,
 		MaxIdleConnsPerHost: 100,
+		Proxy:               http.ProxyFromEnvironment,
 	},
 }
 
