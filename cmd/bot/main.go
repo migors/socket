@@ -344,7 +344,14 @@ func ReceivedKMLCommand(msg tg.Message) {
 			filename := fmt.Sprintf("%d_%d.jpg", photoRow.Socket, photoRow.Id)
 			err := tg.GetFile(photoRow.MediaId, "data/www/"+filename)
 			if err != nil {
-				tg.SendPlainMessage("Cannot download a photo: "+err.Error(), msg.From.Id, msg.Id)
+				errMsg := fmt.Sprintf(
+					"Cannot download a photo; socket_id=%d  photo_id=%d  user=%d  media_id=%s",
+					photoRow.Socket,
+					photoRow.Id,
+					photoRow.User,
+					photoRow.MediaId,
+				)
+				tg.SendPlainMessage(errMsg+"\nerror: "+err.Error(), msg.From.Id, msg.Id)
 				return
 			}
 			err = db.SetPhotoUrl(photoRow.Id, filename)
