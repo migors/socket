@@ -22,4 +22,4 @@ restart: stop start
 	echo "restarted"
 
 deploy:
-	ssh pavl.uk -t 'bash -l -c "cd ~/docker/socketbot && git pull && make && make restart"'
+	ssh pavl.uk -t 'bash -l -c "cd ~/docker/socketbot && git pull && make docker && make restart"'
