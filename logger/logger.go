@@ -25,7 +25,7 @@ func adminNotifier() {
 	time.Sleep(time.Millisecond * 500)
 	tg.WaitForReady()
 	for msg := range adminMsgChan {
-		tg.SendMdMessage("``` "+msg+" ```", TgAdminId, 0)
+		tg.SendPlainMessage(msg, TgAdminId, 0)
 		time.Sleep(adminMsgPause)
 	}
 }

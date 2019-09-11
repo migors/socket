@@ -25,6 +25,19 @@ func SendMdMessage(text string, chatId uint64, replyId uint64) error {
 	return requestWithRetry("sendMessage", params, &Dummy{}, messageRetryCount)
 }
 
+func SendPlainMessage(text string, chatId uint64, replyId uint64) error {
+	params := map[string]string{
+		"chat_id":                  fmt.Sprint(chatId),
+		"text":                     text,
+		"disable_web_page_preview": "true",
+	}
+	if replyId != 0 {
+		params["reply_to_message_id"] = fmt.Sprint(replyId)
+	}
+	logOutgoingMessage("sendMessage", params)
+	return requestWithRetry("sendMessage", params, &Dummy{}, messageRetryCount)
+}
+
 func SendLocation(lat float64, lon float64, chatId uint64, replyId uint64) error {
 	params := map[string]string{
 		"chat_id":   fmt.Sprint(chatId),

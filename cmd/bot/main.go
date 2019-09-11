@@ -316,7 +316,7 @@ func AddCommandFinish(user tg.User) {
 		db.ClearSessionValues(user.Id)
 		tg.SendMdMessage(`Спасибо! Розетка добавлена в базу. В течение суток розетка должна появиться на [карте](`+MapLink+`)`, user.Id, 0)
 
-		tg.SendMdMessage(
+		tg.SendPlainMessage(
 			`Пользователь `+formatUser(user)+" добавил розетку:\n"+socket.Name+"\n"+socket.Description,
 			logger.TgAdminId, 0)
 		tg.SendLocation(socket.Lat, socket.Lng, logger.TgAdminId, 0)
