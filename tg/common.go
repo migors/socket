@@ -22,7 +22,7 @@ const (
 var requestRateLimiter = time.NewTicker(requestRate)
 var token string
 var longClient = &http.Client{
-	Timeout: time.Second * 60,
+	Timeout: time.Second * 20,
 	Transport: &http.Transport{
 		MaxIdleConns:        100,
 		MaxIdleConnsPerHost: 100,

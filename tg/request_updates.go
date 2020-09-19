@@ -72,6 +72,7 @@ func GetUpdates(offset uint64, timeoutSec uint) ([]Update, error) {
 	err := request("getUpdates", map[string]string{
 		"offset":  fmt.Sprint(offset),
 		"timeout": fmt.Sprint(timeoutSec),
+		"limit":   "1",
 	}, &updates)
 
 	return updates, err

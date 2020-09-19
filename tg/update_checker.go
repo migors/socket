@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	longPollingInterval = 30 // in seconds
+	longPollingInterval = 18 // in seconds
 	cooldownInterval    = time.Second
 )
 
