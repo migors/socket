@@ -24,6 +24,9 @@ func updateChecker(updChan chan interface{}) {
 			fmt.Println("Error checking updates:", err)
 			time.Sleep(cooldownInterval)
 		}
+		if len(updates) == 0 {
+			continue
+		}
 
 		for _, update := range updates {
 			lastUpdateId = update.Id
