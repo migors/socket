@@ -23,3 +23,7 @@ restart: stop start
 
 deploy:
 	ssh linode -t 'bash -l -c "cd ~/docker/socketbot && git pull && make docker && make restart"'
+
+.PHONY: sockets
+sockets:
+	rsync --progress data/www/*.* pavl.uk:~/docker/socketbot/data/www
