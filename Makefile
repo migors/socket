@@ -4,13 +4,14 @@ build:
 docker: build
 	sudo docker build -t socketbot .
 
-run: docker
-	sudo docker run \
-		--rm -ti \
-		-v `pwd`/data:/bot/data  \
-		-e "HTTP_PROXY=192.168.2.1:3128" \
-		-e HTTPS_PROXY=192.168.2.1:3128  \
-		socketbot
+run:
+	HTTP_PROXY=192.168.2.1:3128 HTTPS_PROXY=192.168.2.1:3128 go run bitbucket.org/pav5000/socketbot/cmd/bot
+#	sudo docker run \
+#		--rm -ti \
+#		-v `pwd`/data:/bot/data  \
+#		-e "HTTP_PROXY=192.168.2.1:3128" \
+#		-e HTTPS_PROXY=192.168.2.1:3128  \
+#		socketbot
 
 start:
 	sudo docker run -d --name=socketbot --restart=always -v `pwd`/data:/bot/data socketbot

@@ -8,6 +8,7 @@ import (
 
 type Socket struct {
 	Id               uint64
+	EleclubID        uint64
 	Name             string
 	Description      string
 	Photos           []string

@@ -32,6 +32,16 @@ CREATE TABLE sockets(
    layer               TEXT                  NOT NULL  DEFAULT ""
 );
 
+CREATE TABLE eleclub_sockets(
+   id                  INTEGER PRIMARY KEY   NOT NULL,
+   lat                 REAL                  NOT NULL,
+   lng                 REAL                  NOT NULL,
+   description         TEXT                  NOT NULL  DEFAULT "",
+   images              TEXT                  NOT NULL  DEFAULT "[]",
+   active              INTEGER               NOT NULL  DEFAULT 1,
+   merged_with         INTEGER
+);
+
 CREATE TABLE photos(
 	id          INTEGER PRIMARY KEY   NOT NULL,
 	socket      INTEGER               NOT NULL,
