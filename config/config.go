@@ -26,9 +26,16 @@ type ConfigStruct struct {
 
 	// GoogleToken is a token for Google maps API
 	GoogleToken string `yaml:"google_token"`
+
+	// KMLDownload enables feature of fetching sockets from custom google map
+	// it's a legacy feature
+	KMLDownload bool `yaml:"kml_download"`
 }
 
 var Config ConfigStruct
+
+// MapLink link to a map hosted by https server
+var MapLink string
 
 func init() {
 	rawYML, err := ioutil.ReadFile("./data/config.yml")
@@ -39,5 +46,9 @@ func init() {
 	err = yaml.Unmarshal(rawYML, &Config)
 	if err != nil {
 		log.Fatal("error unmarshaling config:", err)
+	}
+
+	if Config.HttpListen != "" {
+		MapLink = "https://" + Config.HttpsListen
 	}
 }

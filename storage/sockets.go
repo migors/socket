@@ -4,6 +4,7 @@ import (
 	"sync"
 	"time"
 
+	"bitbucket.org/pav5000/socketbot/config"
 	"bitbucket.org/pav5000/socketbot/db"
 	"bitbucket.org/pav5000/socketbot/importer"
 	"bitbucket.org/pav5000/socketbot/logger"
@@ -30,7 +31,7 @@ func GetAllSockets() []model.Socket {
 func SocketUpdater() {
 	for {
 		UpdateSockets()
-		time.Sleep(time.Minute * 10)
+		time.Sleep(time.Minute)
 	}
 }
 
@@ -44,12 +45,14 @@ func UpdateSockets() {
 	// log.Println("   From DB:", len(dbSockets))
 	newSockets := dbSockets
 
-	onlineSockets, err := importer.FromKMLOnline()
-	if err != nil {
-		logger.Err("Error downloading new kml data: ", err)
-	} else {
-		// log.Println("   From KML:", len(onlineSockets))
-		newSockets = append(newSockets, onlineSockets...)
+	if config.Config.KMLDownload {
+		onlineSockets, err := importer.FromKMLOnline()
+		if err != nil {
+			logger.Err("Error downloading new kml data: ", err)
+		} else {
+			// log.Println("   From KML:", len(onlineSockets))
+			newSockets = append(newSockets, onlineSockets...)
+		}
 	}
 
 	socketLock.Lock()

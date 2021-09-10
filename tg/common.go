@@ -28,7 +28,7 @@ var longClient = &http.Client{
 	Transport: &http.Transport{
 		MaxIdleConns:        100,
 		MaxIdleConnsPerHost: 100,
-		Proxy:               http.ProxyFromEnvironment,
+		// Proxy:               http.ProxyFromEnvironment,
 	},
 }
 var shortClient = &http.Client{
@@ -36,7 +36,7 @@ var shortClient = &http.Client{
 	Transport: &http.Transport{
 		MaxIdleConns:        100,
 		MaxIdleConnsPerHost: 100,
-		Proxy:               http.ProxyFromEnvironment,
+		// Proxy:               http.ProxyFromEnvironment,
 	},
 }
 
@@ -73,7 +73,7 @@ func requestWithRetry(cmdName string, params map[string]string, v interface{}, r
 		time.Sleep(retryTimeout * time.Duration(i))
 	}
 	if err != nil {
-		criticalLogChan <- err.Error()
+		criticalLogChan <- fmt.Sprintf("requestWithRetry(%s,...): %s", cmdName, err.Error())
 	}
 	return err
 }

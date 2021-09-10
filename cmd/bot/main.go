@@ -12,6 +12,7 @@ import (
 
 	"github.com/golang/geo/s2"
 
+	"bitbucket.org/pav5000/socketbot/config"
 	"bitbucket.org/pav5000/socketbot/db"
 	"bitbucket.org/pav5000/socketbot/exporter"
 	"bitbucket.org/pav5000/socketbot/logger"
@@ -24,7 +25,7 @@ import (
 const (
 	maxSocketDistance         = 50000     // in meters
 	earthAvgRadius    float64 = 6371000.0 // in meters
-	MapLink                   = `https://www.google.com/maps/d/u/0/edit?mid=1z_3GfyNZp09HhOFbB5U6YSDr4PY&ll=55.64577355422915,37.757463619459486&z=11`
+	// MapLink                   = `https://www.google.com/maps/d/u/0/edit?mid=1z_3GfyNZp09HhOFbB5U6YSDr4PY&ll=55.64577355422915,37.757463619459486&z=11`
 )
 
 func main() {
@@ -146,12 +147,12 @@ func main() {
 func SendHelp(msg tg.Message) {
 	tg.SendMdMessage("Пришлите мне своё местоположение (точку на карте) и я попытаюсь найти ближайшую к вам публичную розетку.", msg.From.Id, 0)
 	tg.SendVideoByUrl("https://pavl.uk/socketbot/usage.mp4", msg.From.Id, "Пример использования", 0)
-	tg.SendMdMessage("Другие команды:\n/add - добавить розетку\n/map - получить ссылку на общую карту розеток от Макса\n/help - показать это сообщение", msg.From.Id, 0)
+	tg.SendMdMessage("Другие команды:\n/add - добавить розетку\n/map - получить ссылку на веб-карту розеток\n/help - показать это сообщение", msg.From.Id, 0)
 	tg.SendMdMessage("С вопросами, предложениями, критикой обращайтесь к @pav5000", msg.From.Id, 0)
 }
 
 func SendMapLink(msg tg.Message) {
-	tg.SendMdMessage(`[Карта доступных розеток](`+MapLink+`)`, msg.From.Id, msg.Id)
+	tg.SendMdMessage(`[Карта доступных розеток](`+config.MapLink+`)`, msg.From.Id, msg.Id)
 }
 
 func ReceivedLocation(msg tg.Message) {
@@ -218,7 +219,6 @@ func AddCommandCallback(query tg.CallbackQuery, chatState string) bool {
 		tg.SendMdMessage(`Невозможно пропустить этот шаг`, query.From.Id, 0)
 		return true
 	}
-	return false
 }
 
 func AddCommandCheck(msg tg.Message, chatState string) bool {
@@ -280,7 +280,7 @@ func AddCommandCheck(msg tg.Message, chatState string) bool {
 				`Последний шаг, прикрепите обзорное фото входа в заведение.`,
 				msg.From.Id, msg.Id,
 				[][]tg.InlineKeyboardButton{
-					[]tg.InlineKeyboardButton{{Text: "Пропустить этот шаг", CallbackData: "skip"}},
+					{{Text: "Пропустить этот шаг", CallbackData: "skip"}},
 					GetCancelButtonRow(),
 				})
 		}
@@ -320,7 +320,7 @@ func AddCommandFinish(user tg.User) {
 		go storage.UpdateSockets()
 		db.SetUserState(user.Id, "")
 		db.ClearSessionValues(user.Id)
-		tg.SendMdMessage(`Спасибо! Розетка добавлена в базу. В течение суток розетка должна появиться на [карте](`+MapLink+`)`, user.Id, 0)
+		tg.SendMdMessage(`Спасибо! Розетка добавлена в базу. В течение суток розетка должна появиться на [карте](`+config.MapLink+`)`, user.Id, 0)
 
 		tg.SendPlainMessage(
 			`Пользователь `+formatUser(user)+" добавил розетку:\n"+socket.Name+"\n"+socket.Description,
