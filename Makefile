@@ -26,3 +26,6 @@ deploy:
 .PHONY: sockets
 sockets:
 	rsync --progress data/www/*.* pavl.uk:~/docker/socketbot/data/www
+
+logs:
+	sudo docker logs --tail 100 -f socketbot
