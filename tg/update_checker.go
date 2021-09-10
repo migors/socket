@@ -11,7 +11,7 @@ const (
 )
 
 func StartCheckingUpdates() chan (interface{}) {
-	updChan := make(chan interface{}, 30)
+	updChan := make(chan interface{})
 	go updateChecker(updChan)
 	return updChan
 }
