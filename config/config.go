@@ -48,7 +48,7 @@ func init() {
 		log.Fatal("error unmarshaling config:", err)
 	}
 
-	if Config.HttpListen != "" {
-		MapLink = "https://" + Config.HttpsListen
+	if Config.HttpDomain != "" {
+		MapLink = "https://" + Config.HttpDomain
 	}
 }
