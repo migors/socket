@@ -37,10 +37,12 @@ func main() {
 	}()
 	tg.LoadToken()
 
-	err := site.Run()
-	if err != nil {
-		fmt.Println("error starting site hosting:", err)
-	}
+	go func() {
+		err := site.Run()
+		if err != nil {
+			fmt.Println("error starting site hosting:", err)
+		}
+	}()
 
 	{
 		sigs := make(chan os.Signal, 1)

@@ -69,13 +69,11 @@ type Update struct {
 
 func GetUpdates(offset uint64, timeoutSec uint) ([]Update, error) {
 	updates := []Update{}
-	fmt.Println("GetUpdates")
 	err := request("getUpdates", map[string]string{
 		"offset":  fmt.Sprint(offset),
 		"timeout": fmt.Sprint(timeoutSec),
 		"limit":   "1",
 	}, &updates)
-	fmt.Println("GetUpdates err =", err)
 
 	return updates, err
 }
