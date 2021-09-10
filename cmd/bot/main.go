@@ -16,6 +16,7 @@ import (
 	"bitbucket.org/pav5000/socketbot/exporter"
 	"bitbucket.org/pav5000/socketbot/logger"
 	"bitbucket.org/pav5000/socketbot/model"
+	"bitbucket.org/pav5000/socketbot/site"
 	"bitbucket.org/pav5000/socketbot/storage"
 	"bitbucket.org/pav5000/socketbot/tg"
 )
@@ -33,7 +34,12 @@ func main() {
 			time.Sleep(time.Second * 2)
 		}
 	}()
-	tg.LoadToken("token.txt")
+	tg.LoadToken()
+
+	err := site.Run()
+	if err != nil {
+		fmt.Println("error starting site hosting:", err)
+	}
 
 	{
 		sigs := make(chan os.Signal, 1)

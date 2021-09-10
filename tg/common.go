@@ -12,6 +12,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"bitbucket.org/pav5000/socketbot/config"
 )
 
 const (
@@ -48,12 +50,11 @@ func WaitForReady() {
 	ready.Wait()
 }
 
-func LoadToken(filename string) {
-	raw, err := ioutil.ReadFile(filename)
-	if err != nil {
-		log.Fatal("Cannot read token file", err)
+func LoadToken() {
+	token = strings.TrimSpace(config.Config.TelegramToken)
+	if token == "" {
+		log.Fatal("telegram_token is empty in config.yml")
 	}
-	token = strings.TrimSpace(string(raw))
 	ready.Done()
 }
 

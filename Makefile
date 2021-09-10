@@ -8,8 +8,6 @@ run: docker
 	sudo docker run \
 		--rm -ti \
 		-v `pwd`/data:/bot/data  \
-		-e "HTTP_PROXY=192.168.2.1:3128" \
-		-e HTTPS_PROXY=192.168.2.1:3128  \
 		socketbot
 
 start:
