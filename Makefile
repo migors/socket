@@ -7,11 +7,12 @@ docker: build
 run: docker
 	sudo docker run \
 		--rm -ti \
+		--network host \
 		-v `pwd`/data:/bot/data  \
 		socketbot
 
 start:
-	sudo docker run -d --name=socketbot --restart=always -v `pwd`/data:/bot/data socketbot
+	sudo docker run -d --name=socketbot --network host --restart=always -v `pwd`/data:/bot/data socketbot
 
 stop:
 	sudo docker rm -f socketbot; true
