@@ -263,7 +263,7 @@ func AddCommandCheck(msg tg.Message, chatState string) bool {
 				`Замечательно, теперь прикрепите фотографию, на которой будет видна сама розетка`,
 				msg.From.Id, msg.Id,
 				[][]tg.InlineKeyboardButton{
-					[]tg.InlineKeyboardButton{{Text: "Пропустить этот шаг", CallbackData: "skip"}},
+					{{Text: "Пропустить этот шаг", CallbackData: "skip"}},
 					GetCancelButtonRow(),
 				})
 		}
